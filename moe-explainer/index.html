@@ -1,0 +1,1243 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mixture of Experts (MoE) Explained</title>
+  <style>
+    :root {
+      --bg: #f7f8fb;
+      --card: #ffffff;
+      --ink: #111827;
+      --muted: #4b5563;
+      --line: #e5e7eb;
+      --accent: #2563eb;
+      --accent-2: #7c3aed;
+      --green: #059669;
+      --warn: #d97706;
+      --danger: #dc2626;
+      --shadow: 0 10px 30px rgba(15, 23, 42, 0.07);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--bg);
+      font: 16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #0f172a 0%, #1d4ed8 60%, #4f46e5 100%);
+      color: white;
+      padding: 68px 24px 56px;
+    }
+
+    .hero-inner,
+    .toc-inner,
+    main,
+    footer {
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+
+    .kicker {
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 12px;
+      font-weight: 700;
+      opacity: 0.9;
+      margin-bottom: 10px;
+    }
+
+    h1 {
+      margin: 0 0 12px;
+      font-size: clamp(32px, 5vw, 56px);
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+    }
+
+    .lead {
+      font-size: 19px;
+      max-width: 880px;
+      color: #e5e7eb;
+      margin: 0;
+    }
+
+    .badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 22px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.18);
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .toc {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .toc-inner {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding: 10px 16px;
+    }
+
+    .toc a {
+      color: #1f2937;
+      text-decoration: none;
+      white-space: nowrap;
+      font-size: 14px;
+      padding: 7px 11px;
+      border-radius: 999px;
+    }
+
+    .toc a:hover {
+      background: #eef2ff;
+      color: #1e40af;
+    }
+
+    main {
+      padding: 0 16px 24px;
+    }
+
+    section {
+      padding: 44px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    section:last-child {
+      border-bottom: 0;
+    }
+
+    h2 {
+      margin: 0 0 12px;
+      font-size: clamp(24px, 4vw, 34px);
+      letter-spacing: -0.02em;
+    }
+
+    h3 {
+      margin: 24px 0 10px;
+      font-size: 20px;
+    }
+
+    p {
+      margin: 10px 0;
+    }
+
+    .muted {
+      color: var(--muted);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+      margin-top: 18px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 18px;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+    }
+
+    .card h3 {
+      margin-top: 0;
+    }
+
+    .card .big {
+      font-size: 34px;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      margin: 4px 0 8px;
+    }
+
+    .note {
+      background: #fff7ed;
+      border: 1px solid #fed7aa;
+    }
+
+    .info {
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+    }
+
+    .warn {
+      background: #fef2f2;
+      border: 1px solid #fecaca;
+    }
+
+    .formula {
+      background: #eef2ff;
+      border-left: 4px solid var(--accent);
+      padding: 16px;
+      border-radius: 12px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      overflow-x: auto;
+      white-space: pre;
+      margin: 16px 0;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      overflow: hidden;
+    }
+
+    th,
+    td {
+      padding: 12px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      background: #f3f4f6;
+      font-size: 14px;
+    }
+
+    tr:last-child td {
+      border-bottom: 0;
+    }
+
+    code.inline {
+      background: #eef2ff;
+      padding: 2px 6px;
+      border-radius: 6px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 0.95em;
+    }
+
+    pre {
+      background: #0f172a;
+      color: #e5e7eb;
+      padding: 18px;
+      border-radius: 14px;
+      overflow: auto;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 14px;
+      line-height: 1.55;
+    }
+
+    .svg-wrap {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 16px;
+      box-shadow: var(--shadow);
+      overflow-x: auto;
+      margin-top: 18px;
+    }
+
+    svg text {
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      font-size: 14px;
+    }
+
+    .demo {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 20px;
+      box-shadow: var(--shadow);
+      margin-top: 18px;
+    }
+
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+
+    .tokenBtn {
+      border: 1px solid var(--line);
+      background: #f9fafb;
+      color: var(--ink);
+      border-radius: 10px;
+      padding: 8px 12px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    .tokenBtn.active {
+      background: var(--accent);
+      color: white;
+      border-color: var(--accent);
+    }
+
+    .tokenBtn:hover {
+      border-color: #9ca3af;
+    }
+
+    input[type="range"] {
+      width: 170px;
+    }
+
+    .demo-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 20px;
+    }
+
+    .panel {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 16px;
+      background: #fafafa;
+    }
+
+    .bar-row {
+      display: grid;
+      grid-template-columns: 130px 1fr 70px;
+      gap: 10px;
+      align-items: center;
+      margin: 8px 0;
+      padding: 6px;
+      border-radius: 10px;
+    }
+
+    .bar-row.selected {
+      background: #eef2ff;
+      outline: 1px solid #c7d2fe;
+    }
+
+    .bar-label {
+      font-size: 14px;
+      font-weight: 650;
+    }
+
+    .bar-track {
+      height: 12px;
+      background: #e5e7eb;
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .bar {
+      height: 100%;
+      border-radius: 999px;
+    }
+
+    .bar-value {
+      text-align: right;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 13px;
+    }
+
+    .expert-output {
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 12px;
+      margin: 10px 0;
+      background: white;
+    }
+
+    .chip {
+      display: inline-block;
+      color: white;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .final {
+      margin-top: 12px;
+      padding: 12px;
+      border-radius: 12px;
+      background: #ecfdf5;
+      border: 1px solid #a7f3d0;
+    }
+
+    details {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 12px 16px;
+      margin: 10px 0;
+    }
+
+    summary {
+      cursor: pointer;
+      font-weight: 700;
+    }
+
+    ul {
+      padding-left: 20px;
+    }
+
+    li {
+      margin: 6px 0;
+    }
+
+    footer {
+      padding: 32px 16px 40px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    @media (max-width: 900px) {
+      .demo-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="kicker">Architecture Explainer</div>
+      <h1>Mixture of Experts</h1>
+      <p class="lead">
+        A Mixture of Experts, or MoE, is a neural network design that uses many specialized
+        “expert” sub-networks, but activates only a small subset for each input token.
+        The result is a model with large total capacity but relatively low computation per token.
+      </p>
+      <div class="badges">
+        <span class="badge">Sparse activation</span>
+        <span class="badge">Learned routing</span>
+        <span class="badge">Specialized experts</span>
+        <span class="badge">Efficient scaling</span>
+      </div>
+    </div>
+  </header>
+
+  <nav class="toc" aria-label="Page sections">
+    <div class="toc-inner">
+      <a href="#what">What is MoE?</a>
+      <a href="#components">Core components</a>
+      <a href="#diagram">Diagram</a>
+      <a href="#demo">Interactive demo</a>
+      <a href="#routing">Routing</a>
+      <a href="#training">Training</a>
+      <a href="#variants">Variants</a>
+      <a href="#tradeoffs">Tradeoffs</a>
+      <a href="#pseudo">Pseudocode</a>
+      <a href="#faq">FAQ</a>
+    </div>
+  </nav>
+
+  <main>
+    <section id="what">
+      <h2>What is a Mixture of Experts?</h2>
+      <p>
+        A Mixture of Experts is a model architecture where a learned router decides which
+        smaller expert networks should process each input. Instead of every token passing
+        through the same full network, each token is dynamically routed to a few experts.
+      </p>
+      <p>
+        In modern large language models, MoE is usually applied inside Transformer layers.
+        A common pattern is: keep the attention mechanism dense, but replace the feed-forward
+        network with multiple expert feed-forward networks and a router.
+      </p>
+
+      <div class="grid">
+        <div class="card">
+          <h3>Dense model</h3>
+          <p>Every token uses the same parameters and the same amount of compute.</p>
+        </div>
+        <div class="card">
+          <h3>MoE model</h3>
+          <p>Every token uses a different subset of experts, so total parameters can be huge while active compute stays smaller.</p>
+        </div>
+        <div class="card">
+          <h3>Key idea</h3>
+          <p>Separate model capacity from per-token computation.</p>
+        </div>
+        <div class="card note">
+          <h3>Example</h3>
+          <p>
+            A model may have 47B total parameters, but only about 13B active parameters
+            per token, as in Mixtral-style top-2 MoE designs.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="components">
+      <h2>Core Components</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>Experts</h3>
+          <p>
+            Expert networks are usually feed-forward sub-networks. Each expert can specialize
+            in certain patterns, such as code, math, science, legal language, or multilingual text.
+          </p>
+        </div>
+        <div class="card">
+          <h3>Router / Gate</h3>
+          <p>
+            The router receives a token representation and produces scores for each expert.
+            It decides which experts should process that token.
+          </p>
+        </div>
+        <div class="card">
+          <h3>Top-k selection</h3>
+          <p>
+            For each token, only the top <code class="inline">k</code> experts are activated.
+            Common choices are top-1 or top-2 routing.
+          </p>
+        </div>
+        <div class="card">
+          <h3>Weighted combination</h3>
+          <p>
+            The selected expert outputs are combined using normalized gate weights to produce
+            the layer output.
+          </p>
+        </div>
+      </div>
+
+      <div class="formula">
+For an input token representation x:
+
+1. Compute router logits:
+   z = Router(x)
+
+2. Convert logits to expert probabilities:
+   p = softmax(z)
+
+3. Select top-k experts:
+   S = TopK(p, k)
+
+4. Normalize selected weights:
+   g_i = p_i / sum(p_j for j in S)
+
+5. Combine expert outputs:
+   y = sum(g_i * Expert_i(x) for i in S)
+      </div>
+    </section>
+
+    <section id="diagram">
+      <h2>Architecture Diagram</h2>
+      <p>
+        The diagram below shows one token being routed through a Mixture of Experts layer.
+        Different tokens can choose different experts.
+      </p>
+
+      <div class="svg-wrap">
+        <svg viewBox="0 0 980 360" role="img" aria-labelledby="moeDiagramTitle">
+          <title id="moeDiagramTitle">Mixture of Experts architecture diagram</title>
+          <defs>
+            <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+              <path d="M 0 0 L 10 5 L 0 10 z" fill="#64748b" />
+            </marker>
+          </defs>
+
+          <!-- Input token -->
+          <rect x="40" y="150" width="100" height="60" rx="10" fill="#dbeafe" stroke="#2563eb" stroke-width="2" />
+          <text x="90" y="185" text-anchor="middle">Token x</text>
+
+          <!-- Router -->
+          <rect x="190" y="140" width="110" height="80" rx="10" fill="#ede9fe" stroke="#7c3aed" stroke-width="2" />
+          <text x="245" y="175" text-anchor="middle">Router</text>
+          <text x="245" y="195" text-anchor="middle">G(x)</text>
+
+          <!-- Top-k scores -->
+          <rect x="350" y="150" width="120" height="60" rx="10" fill="#fef3c7" stroke="#d97706" stroke-width="2" />
+          <text x="410" y="177" text-anchor="middle">Top-k</text>
+          <text x="410" y="197" text-anchor="middle">selection</text>
+
+          <!-- Experts -->
+          <rect x="530" y="60" width="120" height="50" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="2" />
+          <text x="590" y="90" text-anchor="middle">Expert 1</text>
+
+          <rect x="530" y="150" width="120" height="50" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="2" />
+          <text x="590" y="180" text-anchor="middle">Expert 2</text>
+
+          <rect x="530" y="240" width="120" height="50" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="2" opacity="0.45" />
+          <text x="590" y="270" text-anchor="middle" opacity="0.75">Expert N</text>
+          <text x="590" y="305" text-anchor="middle" fill="#6b7280" font-size="13">not selected</text>
+
+          <!-- Combine (shifted left to free room for the output label) -->
+          <rect x="690" y="150" width="110" height="60" rx="10" fill="#e0f2fe" stroke="#0284c7" stroke-width="2" />
+          <text x="745" y="177" text-anchor="middle">Weighted</text>
+          <text x="745" y="197" text-anchor="middle">sum</text>
+
+          <!-- Output (moved right, clear of the arrowhead) -->
+          <text x="918" y="185" text-anchor="middle">Output y</text>
+
+          <!-- Arrows -->
+          <line x1="140" y1="180" x2="185" y2="180" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)" />
+          <line x1="300" y1="180" x2="345" y2="180" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)" />
+
+          <line x1="470" y1="180" x2="525" y2="90" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)" />
+          <line x1="470" y1="180" x2="525" y2="175" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)" />
+          <line x1="470" y1="180" x2="525" y2="265" stroke="#9ca3af" stroke-width="2" stroke-dasharray="5 5" marker-end="url(#arrow)" />
+
+          <line x1="650" y1="85"  x2="685" y2="165" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)" />
+          <line x1="650" y1="175" x2="685" y2="180" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)" />
+          <line x1="650" y1="265" x2="686" y2="202" stroke="#9ca3af" stroke-width="2" stroke-dasharray="5 5" marker-end="url(#arrow)" />
+
+          <!-- Shortened output arrow: tip at 855, label starts ~885 → clean gap -->
+          <line x1="800" y1="180" x2="868" y2="180" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)" />
+        </svg>
+      </div>
+    </section>
+
+    <section id="demo">
+      <h2>Interactive Routing Demo</h2>
+      <p>
+        This demo simulates a router choosing experts for different tokens.
+        The scores are illustrative, not real model logits.
+      </p>
+
+      <div class="demo">
+        <div class="controls">
+          <strong>Choose a token:</strong>
+          <div id="tokenButtons"></div>
+        </div>
+
+        <div class="controls">
+          <label for="topK">
+            <strong>Top-k experts:</strong>
+            <span id="topKValue">2</span>
+          </label>
+          <input id="topK" type="range" min="1" max="3" value="2" />
+          <span class="muted">Try changing k to see compute vs specialization tradeoffs.</span>
+        </div>
+
+        <div class="demo-grid">
+          <div class="panel">
+            <h3>Router scores</h3>
+            <p class="muted">
+              Bars show raw expert scores. Selected experts are highlighted.
+              Normalized weights are shown for selected experts.
+            </p>
+            <div id="routerScores" aria-live="polite"></div>
+          </div>
+
+          <div class="panel">
+            <h3>Selected experts</h3>
+            <div id="selectedExperts" aria-live="polite"></div>
+            <div class="final" id="finalSummary"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="routing">
+      <h2>Routing Strategies</h2>
+      <p>
+        Routing is one of the most important and difficult parts of MoE.
+        A good router sends tokens to useful experts while keeping the load balanced.
+      </p>
+
+      <h3>Top-k gating</h3>
+      <p>
+        The router computes probabilities for all experts and activates only the top
+        <code class="inline">k</code>.
+      </p>
+
+      <div class="formula">
+Top-1 routing:
+   only the best expert is used.
+
+Top-2 routing:
+   the best two experts are used.
+
+Top-k routing:
+   the best k experts are used.
+      </div>
+
+      <h3>Load balancing</h3>
+      <p>
+        Without balancing, the router may send most tokens to only a few experts.
+        This causes overloaded experts, wasted capacity, and slower training.
+      </p>
+
+      <h3>Auxiliary load-balancing loss</h3>
+      <p>
+        A common auxiliary loss encourages each expert to receive a roughly equal share of tokens.
+      </p>
+
+      <div class="formula">
+L_aux = alpha * N * sum_e f_e * P_e
+
+where:
+  N = number of experts
+  f_e = fraction of tokens routed to expert e
+  P_e = average router probability assigned to expert e
+      </div>
+
+      <p>
+        This loss penalizes router decisions that concentrate too much traffic on a small number of experts.
+      </p>
+
+      <h3>Capacity factor</h3>
+      <p>
+        Each expert may have a maximum capacity: the number of tokens it can process in a batch.
+        If too many tokens choose one expert, overflow tokens may be dropped or reassigned.
+      </p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Routing idea</th>
+            <th>What it does</th>
+            <th>Why it matters</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Top-1 routing</td>
+            <td>Choose only the best expert.</td>
+            <td>Simple and efficient, but can be unstable.</td>
+          </tr>
+          <tr>
+            <td>Top-2 routing</td>
+            <td>Choose the best two experts.</td>
+            <td>Often more robust and better quality.</td>
+          </tr>
+          <tr>
+            <td>Noisy top-k</td>
+            <td>Add noise to router logits before selection.</td>
+            <td>Encourages exploration and helps load balance.</td>
+          </tr>
+          <tr>
+            <td>Capacity limits</td>
+            <td>Cap how many tokens each expert can receive.</td>
+            <td>Prevents overloaded experts and improves hardware utilization.</td>
+          </tr>
+          <tr>
+            <td>Expert-choice routing</td>
+            <td>Experts choose tokens instead of tokens choosing experts.</td>
+            <td>Can force balanced load by construction.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="training">
+      <h2>How MoE Models Are Trained</h2>
+
+      <p>
+        Training MoE models is similar to training dense models, but with extra machinery for routing.
+      </p>
+
+      <h3>1. Forward pass</h3>
+      <p>
+        For each token, the router selects experts and the selected experts compute the layer output.
+      </p>
+
+      <h3>2. Loss</h3>
+      <p>
+        The main training loss is usually the same as a dense model, such as next-token prediction loss.
+      </p>
+
+      <h3>3. Auxiliary loss</h3>
+      <p>
+        An auxiliary loss encourages balanced expert usage.
+      </p>
+
+      <h3>4. Gradient flow</h3>
+      <p>
+        Gradients flow through selected experts and their gate weights. Unselected experts usually
+        do not receive direct gradients for that token, except through auxiliary losses or other
+        routing mechanisms.
+      </p>
+
+      <div class="grid">
+        <div class="card note">
+          <h3>Common problem: router collapse</h3>
+          <p>
+            The router starts sending most tokens to a few experts. This wastes capacity and
+            makes training inefficient.
+          </p>
+        </div>
+        <div class="card note">
+          <h3>Common problem: expert collapse</h3>
+          <p>
+            Experts become too similar or specialize in trivial patterns, reducing the benefit
+            of the mixture.
+          </p>
+        </div>
+        <div class="card note">
+          <h3>Common problem: routing instability</h3>
+          <p>
+            Small changes in input can cause different experts to be selected, making training
+            or inference less stable.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="variants">
+      <h2>Common MoE Variants</h2>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Variant / Model family</th>
+            <th>Routing style</th>
+            <th>Notable idea</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Switch Transformer</td>
+            <td>Top-1</td>
+            <td>Simple routing and load-balancing loss; scales efficiently.</td>
+          </tr>
+          <tr>
+            <td>GShard</td>
+            <td>Top-2</td>
+            <td>Large-scale sparse expert training with expert parallelism.</td>
+          </tr>
+          <tr>
+            <td>GLaM</td>
+            <td>Top-2</td>
+            <td>Very large total parameters with sparse activation.</td>
+          </tr>
+          <tr>
+            <td>ST-MoE</td>
+            <td>Top-2</td>
+            <td>Stabilized routing, jitter, and routing improvements.</td>
+          </tr>
+          <tr>
+            <td>Mixtral</td>
+            <td>Top-2 of 8</td>
+            <td>Open-weight MoE with strong efficiency for its active size.</td>
+          </tr>
+          <tr>
+            <td>DeepSeek MoE</td>
+            <td>Fine-grained experts</td>
+            <td>Uses many smaller experts and often a shared expert for common patterns.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>Shared experts</h3>
+      <p>
+        Some architectures include one or more experts that are always active.
+        These shared experts can handle general-purpose patterns, while routed experts
+        handle more specialized patterns.
+      </p>
+
+      <div class="formula">
+Hybrid MoE with shared expert:
+
+y = SharedExpert(x)
+  + sum(g_i * RoutedExpert_i(x) for i in TopK)
+      </div>
+    </section>
+
+    <section id="tradeoffs">
+      <h2>Benefits and Tradeoffs</h2>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Aspect</th>
+            <th>Dense model</th>
+            <th>MoE model</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Parameters</td>
+            <td>All parameters active per token.</td>
+            <td>Many total parameters, fewer active parameters per token.</td>
+          </tr>
+          <tr>
+            <td>Compute</td>
+            <td>Compute scales with total model size.</td>
+            <td>Compute scales more with active parameters.</td>
+          </tr>
+          <tr>
+            <td>Memory</td>
+            <td>Lower total weight memory.</td>
+            <td>Higher total weight memory because all experts must be stored or accessible.</td>
+          </tr>
+          <tr>
+            <td>Specialization</td>
+            <td>All parameters shared across all inputs.</td>
+            <td>Experts can specialize by domain or pattern.</td>
+          </tr>
+          <tr>
+            <td>Training</td>
+            <td>Simpler routing behavior.</td>
+            <td>Requires load balancing and routing stability tricks.</td>
+          </tr>
+          <tr>
+            <td>Inference</td>
+            <td>Simpler deployment.</td>
+            <td>Can be efficient, but memory, routing, and communication overhead matter.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="grid">
+        <div class="card info">
+          <h3>Why MoE is attractive</h3>
+          <ul>
+            <li>Can increase model capacity without proportional compute cost.</li>
+            <li>Can improve multilingual and domain coverage.</li>
+            <li>Can scale parameters more efficiently than dense models.</li>
+            <li>Can specialize experts without requiring separate models.</li>
+          </ul>
+        </div>
+
+        <div class="card warn">
+          <h3>Why MoE is hard</h3>
+          <ul>
+            <li>All expert weights must usually be available in memory.</li>
+            <li>Routing can be unstable or poorly balanced.</li>
+            <li>Hardware efficiency depends on batch size and expert parallelism.</li>
+            <li>Small models may not benefit much from MoE.</li>
+            <li>Inference can be slower if experts are offloaded or poorly scheduled.</li>
+          </ul>
+        </div>
+      </div>
+
+      <h3>When MoE is a good fit</h3>
+      <ul>
+        <li>You need very large model capacity but want lower active compute.</li>
+        <li>Your data covers many domains, languages, or specialized tasks.</li>
+        <li>You have infrastructure for expert parallelism and high memory bandwidth.</li>
+        <li>You can tolerate higher total parameter memory.</li>
+      </ul>
+
+      <h3>When MoE may not be the best choice</h3>
+      <ul>
+        <li>The model is small and simple.</li>
+        <li>Memory is severely constrained.</li>
+        <li>Latency is extremely strict and expert loading is expensive.</li>
+        <li>The training data is narrow and specialization is unnecessary.</li>
+      </ul>
+    </section>
+
+    <section id="pseudo">
+      <h2>Simplified Pseudocode</h2>
+
+      <pre>
+class MoELayer:
+    experts = [Expert_1, Expert_2, ..., Expert_N]
+    router = Router()
+
+    def forward(x):
+        # x: token representation
+        logits = router(x)
+        probs = softmax(logits)
+
+        # Select top-k experts for this token
+        topk_indices = top_k_indices(probs, k=2)
+        topk_probs = probs[topk_indices]
+
+        # Normalize selected gate weights
+        gate_weights = topk_probs / sum(topk_probs)
+
+        # Compute selected expert outputs
+        outputs = []
+        for expert_idx, weight in zip(topk_indices, gate_weights):
+            expert_out = experts[expert_idx](x)
+            outputs.append(weight * expert_out)
+
+        # Combine expert outputs
+        y = sum(outputs)
+
+        # Auxiliary loss encourages balanced expert usage
+        aux_loss = load_balancing_loss(probs, topk_indices)
+
+        return y, aux_loss
+      </pre>
+
+      <h3>Batched MoE</h3>
+      <p>
+        In practice, MoE is applied to many tokens at once. Tokens are grouped by selected expert,
+        then each expert processes its assigned tokens in a batch. This is important for efficiency.
+      </p>
+    </section>
+
+    <section id="faq">
+      <h2>Frequently Asked Questions</h2>
+
+      <details>
+        <summary>Is MoE the same as an ensemble?</summary>
+        <p>
+          Not exactly. An ensemble usually runs multiple models and combines their predictions.
+          MoE uses one model with multiple expert sub-networks, but only a subset of experts
+          is activated per token.
+        </p>
+      </details>
+
+      <details>
+        <summary>Do MoE models always run faster?</summary>
+        <p>
+          Not necessarily. They may have lower active computation, but they can require more memory,
+          routing overhead, and communication. Speed depends on implementation and hardware.
+        </p>
+      </details>
+
+      <details>
+        <summary>What does “active parameters” mean?</summary>
+        <p>
+          Active parameters are the parameters actually used for a given token.
+          In MoE, total parameters may be much larger than active parameters.
+        </p>
+      </details>
+
+      <details>
+        <summary>Why do experts specialize?</summary>
+        <p>
+          Specialization can emerge during training because the router learns to send similar
+          tokens to experts that perform well on them. However, specialization is not guaranteed
+          and can be weak or unstable.
+        </p>
+      </details>
+
+      <details>
+        <summary>What happens if one expert gets all the tokens?</summary>
+        <p>
+          This is called load imbalance or router collapse. It wastes capacity and slows training.
+          Auxiliary losses, capacity limits, and routing techniques are used to prevent it.
+        </p>
+      </details>
+
+      <details>
+        <summary>Can MoE be used outside Transformers?</summary>
+        <p>
+          Yes. MoE can be used in other neural architectures, but it is most common in Transformer
+          feed-forward layers for large language models.
+        </p>
+      </details>
+    </section>
+
+    <section>
+      <h2>Key Takeaway</h2>
+      <p class="lead">
+        Mixture of Experts is a way to scale model capacity by adding many specialized experts,
+        while keeping per-token computation sparse through learned routing.
+      </p>
+      <p>
+        The architecture is powerful, but its success depends heavily on routing quality,
+        load balancing, memory management, and deployment efficiency.
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    Standalone HTML explainer for Mixture of Experts architecture.
+  </footer>
+
+  <script>
+    const experts = [
+      { id: "science", name: "Science", color: "#0ea5e9" },
+      { id: "code", name: "Code", color: "#16a34a" },
+      { id: "math", name: "Math", color: "#7c3aed" },
+      { id: "law", name: "Law", color: "#dc2626" },
+      { id: "lang", name: "Language", color: "#f59e0b" }
+    ];
+
+    const tokens = [
+      {
+        id: "bio",
+        label: "Biology token",
+        scores: {
+          science: 0.94,
+          math: 0.21,
+          code: 0.03,
+          law: 0.02,
+          lang: 0.42
+        },
+        outputs: {
+          science: "Chlorophyll absorbs light; chloroplasts use carbon dioxide and water to produce sugars.",
+          math: "Photon flux and reaction rates can be modeled with differential equations.",
+          code: "A Python simulation could model light absorption and growth rates.",
+          law: "Regulatory rules may apply to genetically modified crops.",
+          lang: "Explain photosynthesis using simple everyday language."
+        }
+      },
+      {
+        id: "code",
+        label: "Code token",
+        scores: {
+          science: 0.05,
+          math: 0.22,
+          code: 0.96,
+          law: 0.03,
+          lang: 0.38
+        },
+        outputs: {
+          science: "This token is not primarily scientific.",
+          math: "Sorting complexity can be analyzed mathematically.",
+          code: "Use Python's sorted() or implement a sorting algorithm explicitly.",
+          law: "Software licensing may be relevant in some contexts.",
+          lang: "Describe the coding task in plain language."
+        }
+      },
+      {
+        id: "math",
+        label: "Math token",
+        scores: {
+          science: 0.25,
+          math: 0.95,
+          code: 0.18,
+          law: 0.02,
+          lang: 0.28
+        },
+        outputs: {
+          science: "Derivatives can describe rates of change in physical systems.",
+          math: "The derivative of x² is 2x using the power rule.",
+          code: "Symbolic differentiation can be implemented with a CAS library.",
+          law: "Not primarily legal content.",
+          lang: "Explain the derivative as a slope or rate of change."
+        }
+      },
+      {
+        id: "law",
+        label: "Law token",
+        scores: {
+          science: 0.02,
+          math: 0.03,
+          code: 0.04,
+          law: 0.93,
+          lang: 0.45
+        },
+        outputs: {
+          science: "Not primarily scientific.",
+          math: "Not primarily mathematical.",
+          code: "Legal documents could be analyzed with text-processing tools.",
+          law: "A contract may require offer, acceptance, consideration, capacity, and legality.",
+          lang: "Summarize legal concepts in accessible language."
+        }
+      },
+      {
+        id: "lang",
+        label: "Language token",
+        scores: {
+          science: 0.18,
+          math: 0.12,
+          code: 0.10,
+          law: 0.25,
+          lang: 0.91
+        },
+        outputs: {
+          science: "The paragraph may contain scientific facts.",
+          math: "The paragraph may contain quantitative claims.",
+          code: "The paragraph could be processed programmatically.",
+          law: "The paragraph may contain legal terminology.",
+          lang: "Simplify wording, shorten sentences, and preserve meaning."
+        }
+      }
+    ];
+
+    let currentTokenId = tokens[0].id;
+    let topK = 2;
+
+    const tokenButtons = document.getElementById("tokenButtons");
+    const topKInput = document.getElementById("topK");
+    const topKValue = document.getElementById("topKValue");
+    const routerScores = document.getElementById("routerScores");
+    const selectedExperts = document.getElementById("selectedExperts");
+    const finalSummary = document.getElementById("finalSummary");
+
+    tokens.forEach((token, index) => {
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = "tokenBtn" + (index === 0 ? " active" : "");
+      button.textContent = token.label;
+
+      button.addEventListener("click", () => {
+        currentTokenId = token.id;
+        document.querySelectorAll(".tokenBtn").forEach(btn => {
+          btn.classList.toggle("active", btn === button);
+        });
+        render();
+      });
+
+      tokenButtons.appendChild(button);
+    });
+
+    topKInput.addEventListener("input", () => {
+      topK = parseInt(topKInput.value, 10);
+      render();
+    });
+
+    function getCurrentToken() {
+      return tokens.find(token => token.id === currentTokenId);
+    }
+
+    function render() {
+      const token = getCurrentToken();
+      topKValue.textContent = topK;
+
+      const entries = experts.map(expert => ({
+        ...expert,
+        score: token.scores[expert.id]
+      })).sort((a, b) => b.score - a.score);
+
+      const selectedEntries = entries.slice(0, topK);
+      const selectedIds = new Set(selectedEntries.map(entry => entry.id));
+      const selectedSum = selectedEntries.reduce((sum, entry) => sum + entry.score, 0);
+
+      routerScores.innerHTML = entries.map(entry => {
+        const selected = selectedIds.has(entry.id);
+        const normalizedWeight = selected ? (entry.score / selectedSum).toFixed(2) : "—";
+        const barWidth = Math.max(2, entry.score * 100);
+
+        return `
+          <div class="bar-row ${selected ? "selected" : ""}">
+            <div class="bar-label" style="color:${entry.color}">${entry.name}</div>
+            <div class="bar-track">
+              <div class="bar" style="width:${barWidth}%; background:${entry.color}"></div>
+            </div>
+            <div class="bar-value">${normalizedWeight}</div>
+          </div>
+        `;
+      }).join("");
+
+      selectedExperts.innerHTML = selectedEntries.map(entry => {
+        const weight = entry.score / selectedSum;
+        return `
+          <div class="expert-output">
+            <span class="chip" style="background:${entry.color}">
+              ${entry.name} × ${weight.toFixed(2)}
+            </span>
+            <p>${token.outputs[entry.id]}</p>
+          </div>
+        `;
+      }).join("");
+
+      finalSummary.innerHTML = `
+        <strong>Final layer output:</strong>
+        a weighted blend of ${selectedEntries.map(e => e.name).join(", ")}.
+        Active experts: ${topK}. Inactive experts receive no direct output for this token.
+      `;
+    }
+
+    render();
+  </script>
+</body>
+</html>
