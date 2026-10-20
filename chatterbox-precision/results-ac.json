@@ -1,0 +1,2346 @@
+{
+  "metadata": {
+    "created": "2026-10-19T23:33:58-0400",
+    "platform": "macOS-26.6.2-arm64-arm-64bit",
+    "versions": {
+      "mlx": "0.32.4",
+      "mlx-audio": "0.6.0",
+      "numpy": "2.5.4",
+      "soundfile": "0.13.1"
+    },
+    "python": "3.12.13",
+    "prompts": {
+      "narration": "At seven thirty, the observatory opened its doors. The engineer checked the battery, adjusted the microphone, and said, \"Every measurement matters, especially when the difference is small.\"",
+      "expressive": "Oh, that's a surprise! [chuckle] I thought we'd missed the train. [sigh] All right, let's take a breath and try again.",
+      "cloning": "At seven thirty, the observatory opened its doors. The engineer checked the battery, adjusted the microphone, and said, \"Every measurement matters, especially when the difference is small.\""
+    },
+    "sampling": {
+      "temperature": 0.7,
+      "top_p": 0.95,
+      "top_k": 40,
+      "repetition_penalty": 1.2,
+      "max_tokens": 1200,
+      "stream": false
+    },
+    "seeds": [
+      42,
+      31415
+    ],
+    "orders": [
+      [
+        "4bit",
+        "8bit",
+        "fp16"
+      ],
+      [
+        "8bit",
+        "fp16",
+        "4bit"
+      ],
+      [
+        "fp16",
+        "4bit",
+        "8bit"
+      ]
+    ],
+    "revisions": {
+      "4bit": "c63817725071d7b5269c7b558772d6e8cbf59cec",
+      "8bit": "2f2e21a03863f86a1274d1060dcc188e7cde77e1",
+      "fp16": "b2d0a13aa7cfff0a06d9acb247ae91c8f19a6d75"
+    },
+    "power_before": "Now drawing from 'AC Power'\n -InternalBattery-0 (id=25755747)\t51%; charging; (no estimate) present: true\n",
+    "power_settings": "Battery Power:\n Sleep On Power Button 1\n powermode            0\n standby              1\n ttyskeepawake        1\n hibernatemode        3\n powernap             1\n hibernatefile        /var/vm/sleepimage\n displaysleep         2\n womp                 0\n networkoversleep     0\n sleep                1\n lessbright           1\n tcpkeepalive         1\n disksleep            10\nAC Power:\n Sleep On Power Button 1\n powermode            0\n standby              1\n ttyskeepawake        1\n hibernatemode        3\n powernap             1\n hibernatefile        /var/vm/sleepimage\n displaysleep         5\n womp                 1\n networkoversleep     0\n sleep                0\n tcpkeepalive         1\n disksleep            10\n",
+    "thermal_before": "Note: No thermal warning level has been recorded\nNote: No performance warning level has been recorded\nNote: No CPU power status has been recorded\n",
+    "timing": "Non-streaming in-process synthesis through complete PCM16 WAV encoding; includes reference decoding/conditioning, excludes disk I/O, model load and HTTP transport.",
+    "reference_sha256": "ebaab881f8990446b18dd00e6a62559ade0f91c780b711b22db78337838e12e2",
+    "power_after": "Now drawing from 'AC Power'\n -InternalBattery-0 (id=25755747)\t51%; charging; (no estimate) present: true\n",
+    "thermal_after": "Note: No thermal warning level has been recorded\nNote: No performance warning level has been recorded\nNote: No CPU power status has been recorded\n"
+  },
+  "workers": [
+    {
+      "precision": "4bit",
+      "round": 1,
+      "revision": "c63817725071d7b5269c7b558772d6e8cbf59cec",
+      "load_s": 0.888948166044429,
+      "parameter_bytes": 442357764,
+      "dtype_bytes": {
+        "mlx.core.uint32": 291240960,
+        "mlx.core.float16": 123393924,
+        "mlx.core.float32": 27722880
+      },
+      "on_disk_dtypes": {
+        "F16": 2217,
+        "U32": 533
+      },
+      "quantized_modules": 533,
+      "warmup": [
+        {
+          "precision": "4bit",
+          "round": 1,
+          "mode": "narration",
+          "seed": 999,
+          "synthesis_s": 1.149582542013377,
+          "audio_s": 10.5975,
+          "speed": 9.218563793983472,
+          "rtf": 0.10847676735205256,
+          "first_segment_s": 1.1383435419993475,
+          "peak_mlx_bytes": 2671241756,
+          "rms": 0.03940510516234498,
+          "clipped_fraction": 0.0,
+          "segments": 1,
+          "file": null
+        },
+        {
+          "precision": "4bit",
+          "round": 1,
+          "mode": "cloning",
+          "seed": 999,
+          "synthesis_s": 1.4891359170433134,
+          "audio_s": 10.4375,
+          "speed": 7.009098283468783,
+          "rtf": 0.1426717046269043,
+          "first_segment_s": 1.4800040000118315,
+          "peak_mlx_bytes": 2646542034,
+          "rms": 0.04167945451131162,
+          "clipped_fraction": 0.0,
+          "segments": 1,
+          "file": null
+        }
+      ],
+      "active_mlx_after_warmup_bytes": 940385552,
+      "process_peak_rss_bytes": 1211711488,
+      "host_before": {
+        "gpu": {
+          "name": "Apple M5 Max (40-core GPU)",
+          "vram_used_mb": 31469,
+          "vram_source": "gpu-alloc",
+          "vram_working_set_mb": 1172,
+          "engine_rss_mb": 5777,
+          "vram_total_mb": 131072,
+          "temp_c": null,
+          "thermal": "Nominal",
+          "thermal_level": 0,
+          "power_w": 0.25,
+          "power_instant_w": 0.29,
+          "power_combined_w": 2.73,
+          "power_cpu_w": 2.43,
+          "power_note": "gpu-block-only; excludes unified memory",
+          "power_limit_w": 55,
+          "util_pct": 2.9,
+          "util_busy_pct": 14.5,
+          "clock_max_mhz": 1620,
+          "freq_mhz": 338
+        },
+        "engines": [
+          {
+            "id": "m5-splash",
+            "active": false,
+            "requests_running": 0
+          },
+          {
+            "id": "m5-kokoro",
+            "active": false,
+            "requests_running": 0
+          },
+          {
+            "id": "m5-chatterbox",
+            "active": false,
+            "requests_running": 0
+          },
+          {
+            "id": "m5-embeddings",
+            "active": false,
+            "requests_running": 0
+          }
+        ]
+      },
+      "host_after": {
+        "gpu": {
+          "name": "Apple M5 Max (40-core GPU)",
+          "vram_used_mb": 32530,
+          "vram_source": "gpu-alloc",
+          "vram_working_set_mb": 1637,
+          "engine_rss_mb": 5776,
+          "vram_total_mb": 131072,
+          "temp_c": null,
+          "thermal": "Nominal",
+          "thermal_level": 0,
+          "power_w": 8.15,
+          "power_instant_w": 11.32,
+          "power_combined_w": 22.72,
+          "power_cpu_w": 11.4,
+          "power_note": "gpu-block-only; excludes unified memory",
+          "power_limit_w": 55,
+          "util_pct": 100.0,
+          "util_busy_pct": 100.0,
+          "clock_max_mhz": 1620,
+          "freq_mhz": 1620
+        },
+        "engines": [
+          {
+            "id": "m5-splash",
+            "active": false,
+            "requests_running": 0
+          },
+          {
+            "id": "m5-kokoro",
+            "active": false,
+            "requests_running": 0
+          },
+          {
+            "id": "m5-chatterbox",
+            "active": false,
+            "requests_running": 0
+          },
+          {
+            "id": "m5-embeddings",
+            "active": false,
+            "requests_running": 0
+          }
+        ]
+      },
+      "runs": [
+        {
+          "precision": "4bit",
+          "round": 1,
+          "mode": "narration",
+          "seed": 42,
+          "synthesis_s": 1.099415707984008,
+          "audio_s": 10.3575,
+          "speed": 9.420913240354267,
+          "rtf": 0.10614682191494162,
+          "first_segment_s": 1.0909282920183614,
+          "peak_mlx_bytes": 2633299755,
+          "rms": 0.04005208040048644,
+          "clipped_fraction": 0.0,
+          "segments": 1,
+          "file": "round1-4bit-narration-seed42.wav"
+        },
+        {
+          "precision": "4bit",
+          "round": 1,
+          "mode": "expressive",
+          "seed": 42,
+          "synthesis_s": 0.6724980419967324,
+          "audio_s": 6.1175,
+          "speed": 9.096680760342979,
+          "rtf": 0.10993020711021372,
+          "first_segment_s": 0.6665145829319954,
+          "peak_mlx_bytes": 2026438606,
+          "rms": 0.048453318058631914,
+          "clipped_fraction": 0.0,
+          "segments": 1,
+          "file": "round1-4bit-expressive-seed42.wav"
+        },
+        {
+          "precision": "4bit",
+          "round": 1,
+          "mode": "cloning",
+          "seed": 42,
+          "synthesis_s": 1.497975124977529,
+          "audio_s": 10.7575,
+          "speed": 7.181360905549998,
+          "rtf": 0.1392493725287036,
+          "first_segment_s": 1.4885419169440866,
+          "peak_mlx_bytes": 2698642136,
+          "rms": 0.04632053638159162,
+          "clipped_fraction": 0.0,
+          "segments": 1,
+          "file": "round1-4bit-cloning-seed42.wav"
+        },
+        {
+          "precision": "4bit",
+          "round": 1,
+          "mode": "narration",
+          "seed": 31415,
+          "synthesis_s": 1.0950217079371214,
+          "audio_s": 10.2375,
+          "speed": 9.349129725734954,
+          "rtf": 0.1069618273931254,
+          "first_segment_s": 1.0853911249432713,
+          "peak_mlx_bytes": 2612671748,
+          "rms": 0.038510458856664355,
+          "clipped_fraction": 0.0,
+          "segments": 1,
+          "file": "round1-4bit-narration-seed31415.wav"
+        },
+        {
+          "precision": "4bit",
+          "round": 1,
+          "mode": "expressive",
+          "seed": 31415,
+          "synthesis_s": 0.7575906669953838,
+          "audio_s": 6.9575,
+          "speed": 9.183719260420078,
+          "rtf": 0.10888834595693624,
+          "first_segment_s": 0.7503151251003146,
+          "peak_mlx_bytes": 2174730800,
+          "rms": 0.051764475287669094,
+          "clipped_fraction": 0.0,
+          "segments": 1,
+          "file": "round1-4bit-expressive-seed31415.wav"
+        },
+        {
+          "precision": "4bit",
+          "round": 1,
+          "mode": "cloning",
+          "seed": 31415,
+          "synthesis_s": 1.3841450409963727,
+          "audio_s": 9.7175,
+          "speed": 7.0205792833711165,
+          "rtf": 0.14243838857693572,
+          "first_segment_s": 1.3756111250258982,
+          "peak_mlx_bytes": 2636044363,
+          "rms": 0.04035879993770516,
+          "clipped_fraction": 0.0,
+          "segments": 1,
+          "file": "round1-4bit-cloning-seed31415.wav"
+        }
+      ]
+    },
+    {
+      "precision": "8bit",
+      "round": 1,
+      "revision": "2f2e21a03863f86a1274d1060dcc188e7cde77e1",
+      "load_s": 0.8927417919039726,
+      "parameter_bytes": 733598724,
+      "dtype_bytes": {
+        "mlx.core.uint32": 582481920,
+        "mlx.core.float16": 123393924,
+        "mlx.core.float32": 27722880
+      },
+      "on_disk_dtypes": {
+        "F16": 2217,
+        "U32": 533
+      },
+      "quantized_modules": 533,
+      "warmup": [
+        {
+          "precision": "8bit",
+          "round": 1,
+          "mode": "narration",
+          "seed": 999,
+          "synthesis_s": 1.201062084059231,
+          "audio_s": 10.2775,
+          "speed": 8.557009780264748,
+          "rtf": 0.11686325313152333,
+          "first_segment_s": 1.1911455420777202,
+          "peak_mlx_bytes": 2910440710,
+          "rms": 0.04544591521789614,
+          "clipped_fraction": 0.0,
+          "segments": 1,
+          "file": null
+        },
+        {
+          "precision": "8bit",
+          "round": 1,
+          "mode": "cloning",
+          "seed": 999,
+          "synthesis_s": 1.4298619999317452,
+          "audio_s": 9.4775,
+          "speed": 6.62826202840023,
+          "rtf": 0.150869111045291,
+          "first_segment_s": 1.4216081670019776,
+          "peak_mlx_bytes": 2884924953,
+          "rms": 0.03967849091839363,
+          "clipped_fraction": 0.0,
+          "segments": 1,
+          "file": null
+        }
+      ],
+      "active_mlx_after_warmup_bytes": 1231619024,
+      "process_peak_rss_bytes": 1512390656,
+      "host_before": {
+        "gpu": {
+          "name": "Apple M5 Max (40-core GPU)",
+          "vram_used_mb": 31469,
+          "vram_source": "gpu-alloc",
+          "vram_working_set_mb": 1172,
+          "engine_rss_mb": 5776,
+          "vram_total_mb": 131072,
+          "temp_c": null,
+          "thermal": "Nominal",
+          "thermal_level": 0,
+          "power_w": 9.1,
+          "power_instant_w": 11.32,
+          "power_combined_w": 22.72,
+          "power_cpu_w": 11.4,
+          "power_note": "gpu-block-only; excludes unified memory",
+          "power_limit_w": 55,
+          "util_pct": 100.0,
+          "util_busy_pct": 100.0,
+          "clock_max_mhz": 1620,
+          "freq_mhz": 1620
+        },
+        "engines": [
+          {
+            "id": "m5-splash",
+            "active": false,
+            "requests_running": 0
+          },
+          {
+            "id": "m5-kokoro",
+            "active": false,
+            "requests_running": 0
+          },
+          {
+            "id": "m5-chatterbox",
+            "active": false,
+            "requests_running": 0
+          },
+          {
+            "id": "m5-embeddings",
+            "active": false,
+            "requests_running": 0
+          }
+        ]
+      },
+      "host_after": {
+        "gpu": {
+          "name": "Apple M5 Max (40-core GPU)",
+          "vram_used_mb": 32803,
+          "vram_source": "gpu-alloc",
+          "vram_working_set_mb": 1840,
+          "engine_rss_mb": 5776,
+          "vram_total_mb": 131072,
+          "temp_c": null,
+          "thermal": "Nominal",
+          "thermal_level": 0,
+          "power_w": 13.4,
+          "power_instant_w": 15.73,
+          "power_combined_w": 22.7,
+          "power_cpu_w": 6.96,
+          "power_note": "gpu-block-only; excludes unified memory",
+          "power_limit_w": 55,
+          "util_pct": 38.4,
+          "util_busy_pct": 40.5,
+          "clock_max_mhz": 1620,
+          "freq_mhz": 1555
+        },
+        "engines": [
+          {
+            "id": "m5-splash",
+            "active": false,
+            "requests_running": 0
+          },
+          {
+            "id": "m5-kokoro",
+            "active": false,
+            "requests_running": 0
+          },
+          {
+            "id": "m5-chatterbox",
+            "active": false,
+            "requests_running": 0
+          },
+          {
+            "id": "m5-embeddings",
+            "active": false,
+            "requests_running": 0
+          }
+        ]
+      },
+      "runs": [
+        {
+          "precision": "8bit",
+          "round": 1,
+          "mode": "narration",
+          "seed": 42,
+          "synthesis_s": 1.2377367919543758,
+          "audio_s": 10.7975,
+          "speed": 8.723583293464873,
+          "rtf": 0.11463179365171344,
+          "first_segment_s": 1.2281482089310884,
+          "peak_mlx_bytes": 2995769684,
+          "rms": 0.043812863618613716,
+          "clipped_fraction": 0.0,
+          "segments": 1,
+          "file": "round1-8bit-narration-seed42.wav"
+        },
+        {
+          "precision": "8bit",
+          "round": 1,
+          "mode": "expressive",
+          "seed": 42,
+          "synthesis_s": 0.9032362500438467,
+          "audio_s": 7.9175,
+          "speed": 8.765702217571155,
+          "rtf": 0.11408099148011956,
+          "first_segment_s": 0.8949423329904675,
+          "peak_mlx_bytes": 2613453304,
+          "rms": 0.04379025024149787,
+          "clipped_fraction": 0.0,
+          "segments": 1,
+          "file": "round1-8bit-expressive-seed42.wav"
+        },
+        {
+          "precision": "8bit",
+          "round": 1,
+          "mode": "cloning",
+          "seed": 42,
+          "synthesis_s": 1.5010829999810085,
+          "audio_s": 10.2375,
+          "speed": 6.820075905282735,
+          "rtf": 0.14662593406407895,
+          "first_segment_s": 1.4917491669766605,
+          "peak_mlx_bytes": 2904713490,
+          "rms": 0.03709655460245648,
+          "clipped_fraction": 0.0,
+          "segments": 1,
+          "file": "round1-8bit-cloning-seed42.wav"
+        },
+        {
+          "precision": "8bit",
+          "round": 1,
+          "mode": "narration",
+          "seed": 31415,
+          "synthesis_s": 1.215108749922365,
+          "audio_s": 10.6375,
+          "speed": 8.754360464180383,
+          "rtf": 0.1142287896519262,
+          "first_segment_s": 1.2054556659422815,
+          "peak_mlx_bytes": 2969653556,
+          "rms": 0.04983221943854703,
+          "clipped_fraction": 0.0,
+          "segments": 1,
+          "file": "round1-8bit-narration-seed31415.wav"
+        },
+        {
+          "precision": "8bit",
+          "round": 1,
+          "mode": "expressive",
+          "seed": 31415,
+          "synthesis_s": 0.9973907080711797,
+          "audio_s": 8.7975,
+          "speed": 8.820515299378703,
+          "rtf": 0.11337206116182777,
+          "first_segment_s": 0.9895506670000032,
+          "peak_mlx_bytes": 2765628506,
+          "rms": 0.04319131741811561,
+          "clipped_fraction": 0.0,
+          "segments": 1,
+          "file": "round1-8bit-expressive-seed31415.wav"
+        },
+        {
+          "precision": "8bit",
+          "round": 1,
+          "mode": "cloning",
+          "seed": 31415,
+          "synthesis_s": 1.6756093330914155,
+          "audio_s": 11.7175,
+          "speed": 6.9929784757057885,
+          "rtf": 0.14300058315267042,
+          "first_segment_s": 1.664661042043008,
+          "peak_mlx_bytes": 2886272396,
+          "rms": 0.03838712694570923,
+          "clipped_fraction": 0.0,
+          "segments": 1,
+          "file": "round1-8bit-cloning-seed31415.wav"
+        }
+      ]
+    },
+    {
+      "precision": "fp16",
+      "round": 1,
+      "revision": "b2d0a13aa7cfff0a06d9acb247ae91c8f19a6d75",
+      "load_s": 0.8922080830670893,
+      "parameter_bytes": 1286293988,
+      "dtype_bytes": {
+        "mlx.core.float16": 1245334180,
+        "mlx.core.float32": 40959808
+      },
+      "on_disk_dtypes": {
+        "F16": 2599,
+        "I64": 122
+      },
+      "quantized_modules": 0,
+      "warmup": [
+        {
+          "precision": "fp16",
+          "round": 1,
+          "mode": "narration",
+          "seed": 999,
+          "synthesis_s": 2.107019834103994,
+          "audio_s": 10.1575,
+          "speed": 4.820789930683997,
+          "rtf": 0.20743488398759477,
+          "first_segment_s": 2.0948766249930486,
+          "peak_mlx_bytes": 3444173658,
+          "rms": 0.04371837105992608,
+          "clipped_fraction": 0.0,
+          "segments": 1,
+          "file": null
+        },
+        {
+          "precision": "fp16",
+          "round": 1,
+          "mode": "cloning",
+          "seed": 999,
+          "synthesis_s": 2.3763745420146734,
+          "audio_s": 9.7575,
+          "speed": 4.106044660673591,
+          "rtf": 0.24354338119545715,
+          "first_segment_s": 2.367729959078133,
+          "peak_mlx_bytes": 3486259120,
+          "rms": 0.04700396270015669,
+          "clipped_fraction": 0.0,
+          "segments": 1,
+          "file": null
+        }
+      ],
+      "active_mlx_after_warmup_bytes": 1784898360,
+      "process_peak_rss_bytes": 2035482624,
+      "host_before": {
+        "gpu": {
+          "name": "Apple M5 Max (40-core GPU)",
+          "vram_used_mb": 31469,
+          "vram_source": "gpu-alloc",
+          "vram_working_set_mb": 1172,
+          "engine_rss_mb": 5776,
+          "vram_total_mb": 131072,
+          "temp_c": null,
+          "thermal": "Nominal",
+          "thermal_level": 0,
+          "power_w": 14.1,
+          "power_instant_w": 15.73,
+          "power_combined_w": 22.7,
+          "power_cpu_w": 6.96,
+          "power_note": "gpu-block-only; excludes unified memory",
+          "power_limit_w": 55,
+          "util_pct": 38.4,
+          "util_busy_pct": 40.5,
+          "clock_max_mhz": 1620,
+          "freq_mhz": 1555
+        },
+        "engines": [
+          {
+            "id": "m5-splash",
+            "active": false,
+            "requests_running": 0
+          },
+          {
+            "id": "m5-kokoro",
+            "active": false,
+            "requests_running": 0
+          },
+          {
+            "id": "m5-chatterbox",
+            "active": false,
+            "requests_running": 0
+          },
+          {
+            "id": "m5-embeddings",
+            "active": false,
+            "requests_running": 0
+          }
+        ]
+      },
+      "host_after": {
+        "gpu": {
+          "name": "Apple M5 Max (40-core GPU)",
+          "vram_used_mb": 33326,
+          "vram_source": "gpu-alloc",
+          "vram_working_set_mb": 1451,
+          "engine_rss_mb": 5777,
+          "vram_total_mb": 131072,
+          "temp_c": null,
+          "thermal": "Nominal",
+          "thermal_level": 0,
+          "power_w": 7.99,
+          "power_instant_w": 1.15,
+          "power_combined_w": 2.27,
+          "power_cpu_w": 1.12,
+          "power_note": "gpu-block-only; excludes unified memory",
+          "power_limit_w": 55,
+          "util_pct": 7.0,
+          "util_busy_pct": 11.3,
+          "clock_max_mhz": 1620,
+          "freq_mhz": 1017
+        },
+        "engines": [
+          {
+            "id": "m5-splash",
+            "active": false,
+            "requests_running": 0
+          },
+          {
+            "id": "m5-kokoro",
+            "active": false,
+            "requests_running": 0
+          },
+          {
+            "id": "m5-chatterbox",
+            "active": false,
+            "requests_running": 0
+          },
+          {
+            "id": "m5-embeddings",
+            "active": false,
+            "requests_running": 0
+          }
+        ]
+      },
+      "runs": [
+        {
+          "precision": "fp16",
+          "round": 1,
+          "mode": "narration",
+          "seed": 42,
+          "synthesis_s": 2.2590842919889838,
+          "audio_s": 10.9575,
+          "speed": 4.850416621839551,
+          "rtf": 0.20616785690066017,
+          "first_segment_s": 2.249697500024922,
+          "peak_mlx_bytes": 3575035612,
+          "rms": 0.043166991224273206,
+          "clipped_fraction": 0.0,
+          "segments": 1,
+          "file": "round1-fp16-narration-seed42.wav"
+        },
+        {
+          "precision": "fp16",
+          "round": 1,
+          "mode": "expressive",
+          "seed": 42,
+          "synthesis_s": 1.5045653749257326,
+          "audio_s": 7.2375,
+          "speed": 4.810359270933809,
+          "rtf": 0.20788468047333095,
+          "first_segment_s": 1.4954716250067577,
+          "peak_mlx_bytes": 3155193717,
+          "rms": 0.04556787653816281,
+          "clipped_fraction": 0.0,
+          "segments": 1,
+          "file": "round1-fp16-expressive-seed42.wav"
+        },
+        {
+          "precision": "fp16",
+          "round": 1,
+          "mode": "cloning",
+          "seed": 42,
+          "synthesis_s": 2.498663541977294,
+          "audio_s": 10.3975,
+          "speed": 4.16122452075802,
+          "rtf": 0.24031387756453892,
+          "first_segment_s": 2.487274624989368,
+          "peak_mlx_bytes": 3483978776,
+          "rms": 0.04685201158025285,
+          "clipped_fraction": 0.0,
+          "segments": 1,
+          "file": "round1-fp16-cloning-seed42.wav"
+        },
+        {
+          "precision": "fp16",
+          "round": 1,
+          "mode": "narration",
+          "seed": 31415,
+          "synthesis_s": 2.106280375039205,
+          "audio_s": 10.2375,
+          "speed": 4.860464030012835,
+          "rtf": 0.2057416727755023,
+          "first_segment_s": 2.096747291041538,
+          "peak_mlx_bytes": 3457053548,
+          "rms": 0.048616923839459855,
+          "clipped_fraction": 0.0,
+          "segments": 1,
+          "file": "round1-fp16-narration-seed31415.wav"
+        },
+        {
+          "precision": "fp16",
+          "round": 1,
+          "mode": "expressive",
+          "seed": 31415,
+          "synthesis_s": 1.7847818749723956,
+          "audio_s": 8.6375,
+          "speed": 4.839526959076493,
+          "rtf": 0.20663176555396767,
+          "first_segment_s": 1.7752972090383992,
+          "peak_mlx_bytes": 3290924160,
+          "rms": 0.0464656603124214,
+          "clipped_fraction": 0.0,
+          "segments": 1,
+          "file": "round1-fp16-expressive-seed31415.wav"
+        },
+        {
+          "precision": "fp16",
+          "round": 1,
+          "mode": "cloning",
+          "seed": 31415,
+          "synthesis_s": 2.4378307909937575,
+          "audio_s": 10.1975,
+          "speed": 4.183022069322166,
+          "rtf": 0.2390616122572942,
+          "first_segment_s": 2.4287791659589857,
+          "peak_mlx_bytes": 3452421095,
+          "rms": 0.04604687793474455,
+          "clipped_fraction": 0.0,
+          "segments": 1,
+          "file": "round1-fp16-cloning-seed31415.wav"
+        }
+      ]
+    },
+    {
+      "precision": "4bit",
+      "round": 2,
+      "revision": "c63817725071d7b5269c7b558772d6e8cbf59cec",
+      "load_s": 0.9129492500796914,
+      "parameter_bytes": 442357764,
+      "dtype_bytes": {
+        "mlx.core.uint32": 291240960,
+        "mlx.core.float16": 123393924,
+        "mlx.core.float32": 27722880
+      },
+      "on_disk_dtypes": {
+        "F16": 2217,
+        "U32": 533
+      },
+      "quantized_modules": 533,
+      "warmup": [
+        {
+          "precision": "4bit",
+          "round": 2,
+          "mode": "narration",
+          "seed": 999,
+          "synthesis_s": 1.1649386249482632,
+          "audio_s": 10.5975,
+          "speed": 9.097045778244887,
+          "rtf": 0.10992579617346196,
+          "first_segment_s": 1.1529409169452265,
+          "peak_mlx_bytes": 2671241756,
+          "rms": 0.03940510516234498,
+          "clipped_fraction": 0.0,
+          "segments": 1,
+          "file": null
+        },
+        {
+          "precision": "4bit",
+          "round": 2,
+          "mode": "cloning",
+          "seed": 999,
+          "synthesis_s": 1.5018546249484643,
+          "audio_s": 10.4375,
+          "speed": 6.949740558516547,
+          "rtf": 0.14389026346811634,
+          "first_segment_s": 1.4921241250121966,
+          "peak_mlx_bytes": 2646542225,
+          "rms": 0.03930269692903301,
+          "clipped_fraction": 0.0,
+          "segments": 1,
+          "file": null
+        }
+      ],
+      "active_mlx_after_warmup_bytes": 940385552,
+      "process_peak_rss_bytes": 1209335808,
+      "host_before": {
+        "gpu": {
+          "name": "Apple M5 Max (40-core GPU)",
+          "vram_used_mb": 31470,
+          "vram_source": "gpu-alloc",
+          "vram_working_set_mb": 1172,
+          "engine_rss_mb": 5776,
+          "vram_total_mb": 131072,
+          "temp_c": null,
+          "thermal": "Nominal",
+          "thermal_level": 0,
+          "power_w": 18.75,
+          "power_instant_w": 20.11,
+          "power_combined_w": 27.8,
+          "power_cpu_w": 7.7,
+          "power_note": "gpu-block-only; excludes unified memory",
+          "power_limit_w": 55,
+          "util_pct": 73.2,
+          "util_busy_pct": 73.8,
+          "clock_max_mhz": 1620,
+          "freq_mhz": 1601
+        },
+        "engines": [
+          {
+            "id": "m5-splash",
+            "active": false,
+            "requests_running": 0
+          },
+          {
+            "id": "m5-kokoro",
+            "active": false,
+            "requests_running": 0
+          },
+          {
+            "id": "m5-chatterbox",
+            "active": false,
+            "requests_running": 0
+          },
+          {
+            "id": "m5-embeddings",
+            "active": false,
+            "requests_running": 0
+          }
+        ]
+      },
+      "host_after": {
+        "gpu": {
+          "name": "Apple M5 Max (40-core GPU)",
+          "vram_used_mb": 32526,
+          "vram_source": "gpu-alloc",
+          "vram_working_set_mb": 2141,
+          "engine_rss_mb": 5776,
+          "vram_total_mb": 131072,
+          "temp_c": null,
+          "thermal": "Nominal",
+          "thermal_level": 0,
+          "power_w": 14.27,
+          "power_instant_w": 13.87,
+          "power_combined_w": 23.54,
+          "power_cpu_w": 9.68,
+          "power_note": "gpu-block-only; excludes unified memory",
+          "power_limit_w": 55,
+          "util_pct": 38.6,
+          "util_busy_pct": 40.5,
+          "clock_max_mhz": 1620,
+          "freq_mhz": 1528
+        },
+        "engines": [
+          {
+            "id": "m5-splash",
+            "active": false,
+            "requests_running": 0
+          },
+          {
+            "id": "m5-kokoro",
+            "active": false,
+            "requests_running": 0
+          },
+          {
+            "id": "m5-chatterbox",
+            "active": false,
+            "requests_running": 0
+          },
+          {
+            "id": "m5-embeddings",
+            "active": false,
+            "requests_running": 0
+          }
+        ]
+      },
+      "runs": [
+        {
+          "precision": "4bit",
+          "round": 2,
+          "mode": "narration",
+          "seed": 42,
+          "synthesis_s": 1.114497333066538,
+          "audio_s": 10.3575,
+          "speed": 9.293427353030403,
+          "rtf": 0.10760292860888612,
+          "first_segment_s": 1.1050658749882132,
+          "peak_mlx_bytes": 2633299566,
+          "rms": 0.04005208040048644,
+          "clipped_fraction": 0.0,
+          "segments": 1,
+          "file": "round2-4bit-narration-seed42.wav"
+        },
+        {
+          "precision": "4bit",
+          "round": 2,
+          "mode": "expressive",
+          "seed": 42,
+          "synthesis_s": 0.6790070830611512,
+          "audio_s": 6.1175,
+          "speed": 9.009478917982156,
+          "rtf": 0.1109942105535188,
+          "first_segment_s": 0.6725284580606967,
+          "peak_mlx_bytes": 2026438753,
+          "rms": 0.048453318058631914,
+          "clipped_fraction": 0.0,
+          "segments": 1,
+          "file": "round2-4bit-expressive-seed42.wav"
+        },
+        {
+          "precision": "4bit",
+          "round": 2,
+          "mode": "cloning",
+          "seed": 42,
+          "synthesis_s": 1.4952991669997573,
+          "audio_s": 10.7575,
+          "speed": 7.194212527774214,
+          "rtf": 0.13900061975363767,
+          "first_segment_s": 1.4850517499726266,
+          "peak_mlx_bytes": 2698642136,
+          "rms": 0.04142978586399556,
+          "clipped_fraction": 0.0,
+          "segments": 1,
+          "file": "round2-4bit-cloning-seed42.wav"
+        },
+        {
+          "precision": "4bit",
+          "round": 2,
+          "mode": "narration",
+          "seed": 31415,
+          "synthesis_s": 1.1043854999588802,
+          "audio_s": 10.2375,
+          "speed": 9.269860932057851,
+          "rtf": 0.10787648351246693,
+          "first_segment_s": 1.0946148328948766,
+          "peak_mlx_bytes": 2612671748,
+          "rms": 0.038510458856664355,
+          "clipped_fraction": 0.0,
+          "segments": 1,
+          "file": "round2-4bit-narration-seed31415.wav"
+        },
+        {
+          "precision": "4bit",
+          "round": 2,
+          "mode": "expressive",
+          "seed": 31415,
+          "synthesis_s": 0.7627750410465524,
+          "audio_s": 6.9575,
+          "speed": 9.121300023731875,
+          "rtf": 0.10963349494021594,
+          "first_segment_s": 0.7551056660013273,
+          "peak_mlx_bytes": 2174730800,
+          "rms": 0.051764475287669094,
+          "clipped_fraction": 0.0,
+          "segments": 1,
+          "file": "round2-4bit-expressive-seed31415.wav"
+        },
+        {
+          "precision": "4bit",
+          "round": 2,
+          "mode": "cloning",
+          "seed": 31415,
+          "synthesis_s": 1.3929572920314968,
+          "audio_s": 9.7175,
+          "speed": 6.976165066646044,
+          "rtf": 0.14334523200735755,
+          "first_segment_s": 1.3838162500178441,
+          "peak_mlx_bytes": 2636044363,
+          "rms": 0.036988680648339434,
+          "clipped_fraction": 0.0,
+          "segments": 1,
+          "file": "round2-4bit-cloning-seed31415.wav"
+        }
+      ]
+    },
+    {
+      "precision": "8bit",
+      "round": 2,
+      "revision": "2f2e21a03863f86a1274d1060dcc188e7cde77e1",
+      "load_s": 0.917593750054948,
+      "parameter_bytes": 733598724,
+      "dtype_bytes": {
+        "mlx.core.uint32": 582481920,
+        "mlx.core.float16": 123393924,
+        "mlx.core.float32": 27722880
+      },
+      "on_disk_dtypes": {
+        "F16": 2217,
+        "U32": 533
+      },
+      "quantized_modules": 533,
+      "warmup": [
+        {
+          "precision": "8bit",
+          "round": 2,
+          "mode": "narration",
+          "seed": 999,
+          "synthesis_s": 1.204570374917239,
+          "audio_s": 10.2775,
+          "speed": 8.532087633905261,
+          "rtf": 0.11720460957599017,
+          "first_segment_s": 1.1940189579036087,
+          "peak_mlx_bytes": 2910440710,
+          "rms": 0.04544591521789614,
+          "clipped_fraction": 0.0,
+          "segments": 1,
+          "file": null
+        },
+        {
+          "precision": "8bit",
+          "round": 2,
+          "mode": "cloning",
+          "seed": 999,
+          "synthesis_s": 1.4471302080200985,
+          "audio_s": 9.4775,
+          "speed": 6.5491687945390265,
+          "rtf": 0.15269113247376404,
+          "first_segment_s": 1.4384261249797419,
+          "peak_mlx_bytes": 2884924953,
+          "rms": 0.051526495646917365,
+          "clipped_fraction": 0.0,
+          "segments": 1,
+          "file": null
+        }
+      ],
+      "active_mlx_after_warmup_bytes": 1231619024,
+      "process_peak_rss_bytes": 1513488384,
+      "host_before": {
+        "gpu": {
+          "name": "Apple M5 Max (40-core GPU)",
+          "vram_used_mb": 31469,
+          "vram_source": "gpu-alloc",
+          "vram_working_set_mb": 1172,
+          "engine_rss_mb": 5777,
+          "vram_total_mb": 131072,
+          "temp_c": null,
+          "thermal": "Nominal",
+          "thermal_level": 0,
+          "power_w": 5.94,
+          "power_instant_w": 1.15,
+          "power_combined_w": 2.27,
+          "power_cpu_w": 1.12,
+          "power_note": "gpu-block-only; excludes unified memory",
+          "power_limit_w": 55,
+          "util_pct": 7.0,
+          "util_busy_pct": 11.3,
+          "clock_max_mhz": 1620,
+          "freq_mhz": 1017
+        },
+        "engines": [
+          {
+            "id": "m5-splash",
+            "active": false,
+            "requests_running": 0
+          },
+          {
+            "id": "m5-kokoro",
+            "active": false,
+            "requests_running": 0
+          },
+          {
+            "id": "m5-chatterbox",
+            "active": false,
+            "requests_running": 0
+          },
+          {
+            "id": "m5-embeddings",
+            "active": false,
+            "requests_running": 0
+          }
+        ]
+      },
+      "host_after": {
+        "gpu": {
+          "name": "Apple M5 Max (40-core GPU)",
+          "vram_used_mb": 32808,
+          "vram_source": "gpu-alloc",
+          "vram_working_set_mb": 1841,
+          "engine_rss_mb": 5777,
+          "vram_total_mb": 131072,
+          "temp_c": null,
+          "thermal": "Nominal",
+          "thermal_level": 0,
+          "power_w": 10.18,
+          "power_instant_w": 12.02,
+          "power_combined_w": 22.66,
+          "power_cpu_w": 10.64,
+          "power_note": "gpu-block-only; excludes unified memory",
+          "power_limit_w": 55,
+          "util_pct": 100.0,
+          "util_busy_pct": 100.0,
+          "clock_max_mhz": 1620,
+          "freq_mhz": 1620
+        },
+        "engines": [
+          {
+            "id": "m5-splash",
+            "active": false,
+            "requests_running": 0
+          },
+          {
+            "id": "m5-kokoro",
+            "active": false,
+            "requests_running": 0
+          },
+          {
+            "id": "m5-chatterbox",
+            "active": false,
+            "requests_running": 0
+          },
+          {
+            "id": "m5-embeddings",
+            "active": false,
+            "requests_running": 0
+          }
+        ]
+      },
+      "runs": [
+        {
+          "precision": "8bit",
+          "round": 2,
+          "mode": "narration",
+          "seed": 42,
+          "synthesis_s": 1.2408425000030547,
+          "audio_s": 10.7975,
+          "speed": 8.701749013249803,
+          "rtf": 0.11491942579329056,
+          "first_segment_s": 1.23108699999284,
+          "peak_mlx_bytes": 2995769684,
+          "rms": 0.043812863618613716,
+          "clipped_fraction": 0.0,
+          "segments": 1,
+          "file": "round2-8bit-narration-seed42.wav"
+        },
+        {
+          "precision": "8bit",
+          "round": 2,
+          "mode": "expressive",
+          "seed": 42,
+          "synthesis_s": 0.9077155840350315,
+          "audio_s": 7.9175,
+          "speed": 8.722445818110401,
+          "rtf": 0.11464674253678957,
+          "first_segment_s": 0.8996942919911817,
+          "peak_mlx_bytes": 2613453304,
+          "rms": 0.04379025024149787,
+          "clipped_fraction": 0.0,
+          "segments": 1,
+          "file": "round2-8bit-expressive-seed42.wav"
+        },
+        {
+          "precision": "8bit",
+          "round": 2,
+          "mode": "cloning",
+          "seed": 42,
+          "synthesis_s": 1.5136151670012623,
+          "audio_s": 10.2375,
+          "speed": 6.763608229615119,
+          "rtf": 0.14785007736276065,
+          "first_segment_s": 1.5035747499205172,
+          "peak_mlx_bytes": 2904712150,
+          "rms": 0.05075517419385381,
+          "clipped_fraction": 0.0,
+          "segments": 1,
+          "file": "round2-8bit-cloning-seed42.wav"
+        },
+        {
+          "precision": "8bit",
+          "round": 2,
+          "mode": "narration",
+          "seed": 31415,
+          "synthesis_s": 1.217428999952972,
+          "audio_s": 10.6375,
+          "speed": 8.737675873016755,
+          "rtf": 0.11444690951379291,
+          "first_segment_s": 1.207331332960166,
+          "peak_mlx_bytes": 2969669940,
+          "rms": 0.04983221943854703,
+          "clipped_fraction": 0.0,
+          "segments": 1,
+          "file": "round2-8bit-narration-seed31415.wav"
+        },
+        {
+          "precision": "8bit",
+          "round": 2,
+          "mode": "expressive",
+          "seed": 31415,
+          "synthesis_s": 1.0078951250761747,
+          "audio_s": 8.7975,
+          "speed": 8.728586716137853,
+          "rtf": 0.11456608412346403,
+          "first_segment_s": 0.999851250089705,
+          "peak_mlx_bytes": 2765628292,
+          "rms": 0.04319131741811561,
+          "clipped_fraction": 0.0,
+          "segments": 1,
+          "file": "round2-8bit-expressive-seed31415.wav"
+        },
+        {
+          "precision": "8bit",
+          "round": 2,
+          "mode": "cloning",
+          "seed": 31415,
+          "synthesis_s": 1.6844573749694973,
+          "audio_s": 11.7175,
+          "speed": 6.956246073138053,
+          "rtf": 0.14375569660503498,
+          "first_segment_s": 1.673343208967708,
+          "peak_mlx_bytes": 2886287848,
+          "rms": 0.05067894392445698,
+          "clipped_fraction": 0.0,
+          "segments": 1,
+          "file": "round2-8bit-cloning-seed31415.wav"
+        }
+      ]
+    },
+    {
+      "precision": "fp16",
+      "round": 2,
+      "revision": "b2d0a13aa7cfff0a06d9acb247ae91c8f19a6d75",
+      "load_s": 0.9075660000089556,
+      "parameter_bytes": 1286293988,
+      "dtype_bytes": {
+        "mlx.core.float16": 1245334180,
+        "mlx.core.float32": 40959808
+      },
+      "on_disk_dtypes": {
+        "F16": 2599,
+        "I64": 122
+      },
+      "quantized_modules": 0,
+      "warmup": [
+        {
+          "precision": "fp16",
+          "round": 2,
+          "mode": "narration",
+          "seed": 999,
+          "synthesis_s": 2.1168039590120316,
+          "audio_s": 10.1575,
+          "speed": 4.798507654313333,
+          "rtf": 0.20839812542574762,
+          "first_segment_s": 2.1046024169772863,
+          "peak_mlx_bytes": 3444173658,
+          "rms": 0.04371837105992608,
+          "clipped_fraction": 0.0,
+          "segments": 1,
+          "file": null
+        },
+        {
+          "precision": "fp16",
+          "round": 2,
+          "mode": "cloning",
+          "seed": 999,
+          "synthesis_s": 2.373689042055048,
+          "audio_s": 9.7575,
+          "speed": 4.110690080766576,
+          "rtf": 0.24326815701307178,
+          "first_segment_s": 2.3648283750517294,
+          "peak_mlx_bytes": 3486259248,
+          "rms": 0.04700396270015669,
+          "clipped_fraction": 0.0,
+          "segments": 1,
+          "file": null
+        }
+      ],
+      "active_mlx_after_warmup_bytes": 1784898360,
+      "process_peak_rss_bytes": 2035433472,
+      "host_before": {
+        "gpu": {
+          "name": "Apple M5 Max (40-core GPU)",
+          "vram_used_mb": 31469,
+          "vram_source": "gpu-alloc",
+          "vram_working_set_mb": 1172,
+          "engine_rss_mb": 5777,
+          "vram_total_mb": 131072,
+          "temp_c": null,
+          "thermal": "Nominal",
+          "thermal_level": 0,
+          "power_w": 10.73,
+          "power_instant_w": 12.02,
+          "power_combined_w": 22.66,
+          "power_cpu_w": 10.64,
+          "power_note": "gpu-block-only; excludes unified memory",
+          "power_limit_w": 55,
+          "util_pct": 100.0,
+          "util_busy_pct": 100.0,
+          "clock_max_mhz": 1620,
+          "freq_mhz": 1620
+        },
+        "engines": [
+          {
+            "id": "m5-splash",
+            "active": false,
+            "requests_running": 0
+          },
+          {
+            "id": "m5-kokoro",
+            "active": false,
+            "requests_running": 0
+          },
+          {
+            "id": "m5-chatterbox",
+            "active": false,
+            "requests_running": 0
+          },
+          {
+            "id": "m5-embeddings",
+            "active": false,
+            "requests_running": 0
+          }
+        ]
+      },
+      "host_after": {
+        "gpu": {
+          "name": "Apple M5 Max (40-core GPU)",
+          "vram_used_mb": 33326,
+          "vram_source": "gpu-alloc",
+          "vram_working_set_mb": 2242,
+          "engine_rss_mb": 5777,
+          "vram_total_mb": 131072,
+          "temp_c": null,
+          "thermal": "Nominal",
+          "thermal_level": 0,
+          "power_w": 18.17,
+          "power_instant_w": 20.11,
+          "power_combined_w": 27.8,
+          "power_cpu_w": 7.7,
+          "power_note": "gpu-block-only; excludes unified memory",
+          "power_limit_w": 55,
+          "util_pct": 73.2,
+          "util_busy_pct": 73.8,
+          "clock_max_mhz": 1620,
+          "freq_mhz": 1601
+        },
+        "engines": [
+          {
+            "id": "m5-splash",
+            "active": false,
+            "requests_running": 0
+          },
+          {
+            "id": "m5-kokoro",
+            "active": false,
+            "requests_running": 0
+          },
+          {
+            "id": "m5-chatterbox",
+            "active": false,
+            "requests_running": 0
+          },
+          {
+            "id": "m5-embeddings",
+            "active": false,
+            "requests_running": 0
+          }
+        ]
+      },
+      "runs": [
+        {
+          "precision": "fp16",
+          "round": 2,
+          "mode": "narration",
+          "seed": 42,
+          "synthesis_s": 2.2587806660449132,
+          "audio_s": 10.9575,
+          "speed": 4.851068616231073,
+          "rtf": 0.2061401474829946,
+          "first_segment_s": 2.2488752499921247,
+          "peak_mlx_bytes": 3575035612,
+          "rms": 0.043166991224273206,
+          "clipped_fraction": 0.0,
+          "segments": 1,
+          "file": "round2-fp16-narration-seed42.wav"
+        },
+        {
+          "precision": "fp16",
+          "round": 2,
+          "mode": "expressive",
+          "seed": 42,
+          "synthesis_s": 1.5052207499975339,
+          "audio_s": 7.2375,
+          "speed": 4.80826483425229,
+          "rtf": 0.20797523316028102,
+          "first_segment_s": 1.4977912500035018,
+          "peak_mlx_bytes": 3155193717,
+          "rms": 0.04556787653816281,
+          "clipped_fraction": 0.0,
+          "segments": 1,
+          "file": "round2-fp16-expressive-seed42.wav"
+        },
+        {
+          "precision": "fp16",
+          "round": 2,
+          "mode": "cloning",
+          "seed": 42,
+          "synthesis_s": 2.4899046670179814,
+          "audio_s": 10.3975,
+          "speed": 4.17586268973603,
+          "rtf": 0.23947147554873588,
+          "first_segment_s": 2.4790921250823885,
+          "peak_mlx_bytes": 3483979416,
+          "rms": 0.04685201158025285,
+          "clipped_fraction": 0.0,
+          "segments": 1,
+          "file": "round2-fp16-cloning-seed42.wav"
+        },
+        {
+          "precision": "fp16",
+          "round": 2,
+          "mode": "narration",
+          "seed": 31415,
+          "synthesis_s": 2.1134066249942407,
+          "audio_s": 10.2375,
+          "speed": 4.844074906800246,
+          "rtf": 0.20643776556720297,
+          "first_segment_s": 2.1042136669857427,
+          "peak_mlx_bytes": 3457053548,
+          "rms": 0.048616923839459855,
+          "clipped_fraction": 0.0,
+          "segments": 1,
+          "file": "round2-fp16-narration-seed31415.wav"
+        },
+        {
+          "precision": "fp16",
+          "round": 2,
+          "mode": "expressive",
+          "seed": 31415,
+          "synthesis_s": 1.7916165000060573,
+          "audio_s": 8.6375,
+          "speed": 4.821065222368066,
+          "rtf": 0.20742303907450738,
+          "first_segment_s": 1.782237209030427,
+          "peak_mlx_bytes": 3290924160,
+          "rms": 0.0464656603124214,
+          "clipped_fraction": 0.0,
+          "segments": 1,
+          "file": "round2-fp16-expressive-seed31415.wav"
+        },
+        {
+          "precision": "fp16",
+          "round": 2,
+          "mode": "cloning",
+          "seed": 31415,
+          "synthesis_s": 2.444769833004102,
+          "audio_s": 10.1975,
+          "speed": 4.17114930916398,
+          "rtf": 0.2397420772742439,
+          "first_segment_s": 2.4360187500715256,
+          "peak_mlx_bytes": 3452421095,
+          "rms": 0.04604687793474455,
+          "clipped_fraction": 0.0,
+          "segments": 1,
+          "file": "round2-fp16-cloning-seed31415.wav"
+        }
+      ]
+    },
+    {
+      "precision": "4bit",
+      "round": 3,
+      "revision": "c63817725071d7b5269c7b558772d6e8cbf59cec",
+      "load_s": 0.9351265829754993,
+      "parameter_bytes": 442357764,
+      "dtype_bytes": {
+        "mlx.core.uint32": 291240960,
+        "mlx.core.float16": 123393924,
+        "mlx.core.float32": 27722880
+      },
+      "on_disk_dtypes": {
+        "F16": 2217,
+        "U32": 533
+      },
+      "quantized_modules": 533,
+      "warmup": [
+        {
+          "precision": "4bit",
+          "round": 3,
+          "mode": "narration",
+          "seed": 999,
+          "synthesis_s": 1.164973041974008,
+          "audio_s": 10.5975,
+          "speed": 9.096777022447565,
+          "rtf": 0.10992904382863959,
+          "first_segment_s": 1.153285791981034,
+          "peak_mlx_bytes": 2671258140,
+          "rms": 0.03940510516234498,
+          "clipped_fraction": 0.0,
+          "segments": 1,
+          "file": null
+        },
+        {
+          "precision": "4bit",
+          "round": 3,
+          "mode": "cloning",
+          "seed": 999,
+          "synthesis_s": 1.5034711660118774,
+          "audio_s": 10.4375,
+          "speed": 6.942268156486577,
+          "rtf": 0.14404514165383256,
+          "first_segment_s": 1.493076500017196,
+          "peak_mlx_bytes": 2646542225,
+          "rms": 0.07022735567238814,
+          "clipped_fraction": 0.0,
+          "segments": 1,
+          "file": null
+        }
+      ],
+      "active_mlx_after_warmup_bytes": 940385552,
+      "process_peak_rss_bytes": 1209909248,
+      "host_before": {
+        "gpu": {
+          "name": "Apple M5 Max (40-core GPU)",
+          "vram_used_mb": 31469,
+          "vram_source": "gpu-alloc",
+          "vram_working_set_mb": 1172,
+          "engine_rss_mb": 5776,
+          "vram_total_mb": 131072,
+          "temp_c": null,
+          "thermal": "Nominal",
+          "thermal_level": 0,
+          "power_w": 15.91,
+          "power_instant_w": 14.67,
+          "power_combined_w": 21.59,
+          "power_cpu_w": 6.92,
+          "power_note": "gpu-block-only; excludes unified memory",
+          "power_limit_w": 55,
+          "util_pct": 100.0,
+          "util_busy_pct": 100.0,
+          "clock_max_mhz": 1620,
+          "freq_mhz": 1620
+        },
+        "engines": [
+          {
+            "id": "m5-splash",
+            "active": false,
+            "requests_running": 0
+          },
+          {
+            "id": "m5-kokoro",
+            "active": false,
+            "requests_running": 0
+          },
+          {
+            "id": "m5-chatterbox",
+            "active": false,
+            "requests_running": 0
+          },
+          {
+            "id": "m5-embeddings",
+            "active": false,
+            "requests_running": 0
+          }
+        ]
+      },
+      "host_after": {
+        "gpu": {
+          "name": "Apple M5 Max (40-core GPU)",
+          "vram_used_mb": 32527,
+          "vram_source": "gpu-alloc",
+          "vram_working_set_mb": 1324,
+          "engine_rss_mb": 5777,
+          "vram_total_mb": 131072,
+          "temp_c": null,
+          "thermal": "Nominal",
+          "thermal_level": 0,
+          "power_w": 8.04,
+          "power_instant_w": 1.11,
+          "power_combined_w": 1.7,
+          "power_cpu_w": 0.58,
+          "power_note": "gpu-block-only; excludes unified memory",
+          "power_limit_w": 55,
+          "util_pct": 7.0,
+          "util_busy_pct": 12.3,
+          "clock_max_mhz": 1620,
+          "freq_mhz": 923
+        },
+        "engines": [
+          {
+            "id": "m5-splash",
+            "active": false,
+            "requests_running": 0
+          },
+          {
+            "id": "m5-kokoro",
+            "active": false,
+            "requests_running": 0
+          },
+          {
+            "id": "m5-chatterbox",
+            "active": false,
+            "requests_running": 0
+          },
+          {
+            "id": "m5-embeddings",
+            "active": false,
+            "requests_running": 0
+          }
+        ]
+      },
+      "runs": [
+        {
+          "precision": "4bit",
+          "round": 3,
+          "mode": "narration",
+          "seed": 42,
+          "synthesis_s": 1.1300604580901563,
+          "audio_s": 10.3575,
+          "speed": 9.165438827498269,
+          "rtf": 0.10910552334927891,
+          "first_segment_s": 1.1205421671038494,
+          "peak_mlx_bytes": 2633299566,
+          "rms": 0.04005208040048644,
+          "clipped_fraction": 0.0,
+          "segments": 1,
+          "file": "round3-4bit-narration-seed42.wav"
+        },
+        {
+          "precision": "4bit",
+          "round": 3,
+          "mode": "expressive",
+          "seed": 42,
+          "synthesis_s": 0.6724793339380994,
+          "audio_s": 6.1175,
+          "speed": 9.09693382572126,
+          "rtf": 0.10992714898865541,
+          "first_segment_s": 0.6657551670214161,
+          "peak_mlx_bytes": 2026438753,
+          "rms": 0.048453318058631914,
+          "clipped_fraction": 0.0,
+          "segments": 1,
+          "file": "round3-4bit-expressive-seed42.wav"
+        },
+        {
+          "precision": "4bit",
+          "round": 3,
+          "mode": "cloning",
+          "seed": 42,
+          "synthesis_s": 1.5185332080582157,
+          "audio_s": 10.7575,
+          "speed": 7.08413878795306,
+          "rtf": 0.14116041906188387,
+          "first_segment_s": 1.5074002080364153,
+          "peak_mlx_bytes": 2698642136,
+          "rms": 0.07825294453227394,
+          "clipped_fraction": 0.0,
+          "segments": 1,
+          "file": "round3-4bit-cloning-seed42.wav"
+        },
+        {
+          "precision": "4bit",
+          "round": 3,
+          "mode": "narration",
+          "seed": 31415,
+          "synthesis_s": 1.1124567079823464,
+          "audio_s": 10.2375,
+          "speed": 9.202605302787621,
+          "rtf": 0.10866487990059549,
+          "first_segment_s": 1.102514083031565,
+          "peak_mlx_bytes": 2612671562,
+          "rms": 0.038510458856664355,
+          "clipped_fraction": 0.0,
+          "segments": 1,
+          "file": "round3-4bit-narration-seed31415.wav"
+        },
+        {
+          "precision": "4bit",
+          "round": 3,
+          "mode": "expressive",
+          "seed": 31415,
+          "synthesis_s": 0.7537672909675166,
+          "audio_s": 6.9575,
+          "speed": 9.230302353753675,
+          "rtf": 0.1083388129310121,
+          "first_segment_s": 0.7462103329598904,
+          "peak_mlx_bytes": 2174730904,
+          "rms": 0.051764475287669094,
+          "clipped_fraction": 0.0,
+          "segments": 1,
+          "file": "round3-4bit-expressive-seed31415.wav"
+        },
+        {
+          "precision": "4bit",
+          "round": 3,
+          "mode": "cloning",
+          "seed": 31415,
+          "synthesis_s": 1.4217416249448434,
+          "audio_s": 9.7175,
+          "speed": 6.834926845710796,
+          "rtf": 0.146307344990465,
+          "first_segment_s": 1.412085291929543,
+          "peak_mlx_bytes": 2636044536,
+          "rms": 0.06330395765769672,
+          "clipped_fraction": 0.0,
+          "segments": 1,
+          "file": "round3-4bit-cloning-seed31415.wav"
+        }
+      ]
+    },
+    {
+      "precision": "8bit",
+      "round": 3,
+      "revision": "2f2e21a03863f86a1274d1060dcc188e7cde77e1",
+      "load_s": 0.9345297079999,
+      "parameter_bytes": 733598724,
+      "dtype_bytes": {
+        "mlx.core.uint32": 582481920,
+        "mlx.core.float16": 123393924,
+        "mlx.core.float32": 27722880
+      },
+      "on_disk_dtypes": {
+        "F16": 2217,
+        "U32": 533
+      },
+      "quantized_modules": 533,
+      "warmup": [
+        {
+          "precision": "8bit",
+          "round": 3,
+          "mode": "narration",
+          "seed": 999,
+          "synthesis_s": 1.207365500042215,
+          "audio_s": 10.2775,
+          "speed": 8.512335328150963,
+          "rtf": 0.11747657504667623,
+          "first_segment_s": 1.1971990420715883,
+          "peak_mlx_bytes": 2910440710,
+          "rms": 0.04544591521789614,
+          "clipped_fraction": 0.0,
+          "segments": 1,
+          "file": null
+        },
+        {
+          "precision": "8bit",
+          "round": 3,
+          "mode": "cloning",
+          "seed": 999,
+          "synthesis_s": 1.4620954579440877,
+          "audio_s": 9.4775,
+          "speed": 6.482134903371289,
+          "rtf": 0.15427016174561728,
+          "first_segment_s": 1.4534185829106718,
+          "peak_mlx_bytes": 2884924722,
+          "rms": 0.04650112662856076,
+          "clipped_fraction": 0.0,
+          "segments": 1,
+          "file": null
+        }
+      ],
+      "active_mlx_after_warmup_bytes": 1231619024,
+      "process_peak_rss_bytes": 1513209856,
+      "host_before": {
+        "gpu": {
+          "name": "Apple M5 Max (40-core GPU)",
+          "vram_used_mb": 31469,
+          "vram_source": "gpu-alloc",
+          "vram_working_set_mb": 1172,
+          "engine_rss_mb": 5777,
+          "vram_total_mb": 131072,
+          "temp_c": null,
+          "thermal": "Nominal",
+          "thermal_level": 0,
+          "power_w": 5.96,
+          "power_instant_w": 1.11,
+          "power_combined_w": 1.7,
+          "power_cpu_w": 0.58,
+          "power_note": "gpu-block-only; excludes unified memory",
+          "power_limit_w": 55,
+          "util_pct": 7.0,
+          "util_busy_pct": 12.3,
+          "clock_max_mhz": 1620,
+          "freq_mhz": 923
+        },
+        "engines": [
+          {
+            "id": "m5-splash",
+            "active": false,
+            "requests_running": 0
+          },
+          {
+            "id": "m5-kokoro",
+            "active": false,
+            "requests_running": 0
+          },
+          {
+            "id": "m5-chatterbox",
+            "active": false,
+            "requests_running": 0
+          },
+          {
+            "id": "m5-embeddings",
+            "active": false,
+            "requests_running": 0
+          }
+        ]
+      },
+      "host_after": {
+        "gpu": {
+          "name": "Apple M5 Max (40-core GPU)",
+          "vram_used_mb": 32864,
+          "vram_source": "gpu-alloc",
+          "vram_working_set_mb": 1841,
+          "engine_rss_mb": 5777,
+          "vram_total_mb": 131072,
+          "temp_c": null,
+          "thermal": "Nominal",
+          "thermal_level": 0,
+          "power_w": 12.59,
+          "power_instant_w": 13.57,
+          "power_combined_w": 24.65,
+          "power_cpu_w": 11.08,
+          "power_note": "gpu-block-only; excludes unified memory",
+          "power_limit_w": 55,
+          "util_pct": 100.0,
+          "util_busy_pct": 100.0,
+          "clock_max_mhz": 1620,
+          "freq_mhz": 1620
+        },
+        "engines": [
+          {
+            "id": "m5-splash",
+            "active": false,
+            "requests_running": 0
+          },
+          {
+            "id": "m5-kokoro",
+            "active": false,
+            "requests_running": 0
+          },
+          {
+            "id": "m5-chatterbox",
+            "active": false,
+            "requests_running": 0
+          },
+          {
+            "id": "m5-embeddings",
+            "active": false,
+            "requests_running": 0
+          }
+        ]
+      },
+      "runs": [
+        {
+          "precision": "8bit",
+          "round": 3,
+          "mode": "narration",
+          "seed": 42,
+          "synthesis_s": 1.2369071249850094,
+          "audio_s": 10.7975,
+          "speed": 8.729434718173248,
+          "rtf": 0.11455495484927154,
+          "first_segment_s": 1.2266629579244182,
+          "peak_mlx_bytes": 2995769684,
+          "rms": 0.043812863618613716,
+          "clipped_fraction": 0.0,
+          "segments": 1,
+          "file": "round3-8bit-narration-seed42.wav"
+        },
+        {
+          "precision": "8bit",
+          "round": 3,
+          "mode": "expressive",
+          "seed": 42,
+          "synthesis_s": 0.9075002919416875,
+          "audio_s": 7.9175,
+          "speed": 8.724515099669796,
+          "rtf": 0.11461955060835964,
+          "first_segment_s": 0.8988814170006663,
+          "peak_mlx_bytes": 2613453112,
+          "rms": 0.04379025024149787,
+          "clipped_fraction": 0.0,
+          "segments": 1,
+          "file": "round3-8bit-expressive-seed42.wav"
+        },
+        {
+          "precision": "8bit",
+          "round": 3,
+          "mode": "cloning",
+          "seed": 42,
+          "synthesis_s": 1.5382624579360709,
+          "audio_s": 10.2375,
+          "speed": 6.655236203148283,
+          "rtf": 0.15025762714882254,
+          "first_segment_s": 1.5269452499924228,
+          "peak_mlx_bytes": 2904712150,
+          "rms": 0.047390948692255255,
+          "clipped_fraction": 0.0,
+          "segments": 1,
+          "file": "round3-8bit-cloning-seed42.wav"
+        },
+        {
+          "precision": "8bit",
+          "round": 3,
+          "mode": "narration",
+          "seed": 31415,
+          "synthesis_s": 1.217411582940258,
+          "audio_s": 10.6375,
+          "speed": 8.73780087939414,
+          "rtf": 0.11444527219179865,
+          "first_segment_s": 1.2074852079385892,
+          "peak_mlx_bytes": 2969669940,
+          "rms": 0.04983221943854703,
+          "clipped_fraction": 0.0,
+          "segments": 1,
+          "file": "round3-8bit-narration-seed31415.wav"
+        },
+        {
+          "precision": "8bit",
+          "round": 3,
+          "mode": "expressive",
+          "seed": 31415,
+          "synthesis_s": 1.0058791249757633,
+          "audio_s": 8.7975,
+          "speed": 8.746080698525258,
+          "rtf": 0.11433692810182021,
+          "first_segment_s": 0.9981614999705926,
+          "peak_mlx_bytes": 2765628292,
+          "rms": 0.04319131741811561,
+          "clipped_fraction": 0.0,
+          "segments": 1,
+          "file": "round3-8bit-expressive-seed31415.wav"
+        },
+        {
+          "precision": "8bit",
+          "round": 3,
+          "mode": "cloning",
+          "seed": 31415,
+          "synthesis_s": 1.7137882079696283,
+          "audio_s": 11.7175,
+          "speed": 6.837192568784238,
+          "rtf": 0.14625886135861987,
+          "first_segment_s": 1.702865874976851,
+          "peak_mlx_bytes": 2886289060,
+          "rms": 0.047033598507432585,
+          "clipped_fraction": 0.0,
+          "segments": 1,
+          "file": "round3-8bit-cloning-seed31415.wav"
+        }
+      ]
+    },
+    {
+      "precision": "fp16",
+      "round": 3,
+      "revision": "b2d0a13aa7cfff0a06d9acb247ae91c8f19a6d75",
+      "load_s": 0.9084924999624491,
+      "parameter_bytes": 1286293988,
+      "dtype_bytes": {
+        "mlx.core.float16": 1245334180,
+        "mlx.core.float32": 40959808
+      },
+      "on_disk_dtypes": {
+        "F16": 2599,
+        "I64": 122
+      },
+      "quantized_modules": 0,
+      "warmup": [
+        {
+          "precision": "fp16",
+          "round": 3,
+          "mode": "narration",
+          "seed": 999,
+          "synthesis_s": 2.116176625015214,
+          "audio_s": 10.1575,
+          "speed": 4.7999301570240975,
+          "rtf": 0.20833636475660486,
+          "first_segment_s": 2.1036749579943717,
+          "peak_mlx_bytes": 3444173658,
+          "rms": 0.04371837105992608,
+          "clipped_fraction": 0.0,
+          "segments": 1,
+          "file": null
+        },
+        {
+          "precision": "fp16",
+          "round": 3,
+          "mode": "cloning",
+          "seed": 999,
+          "synthesis_s": 2.3838773340685293,
+          "audio_s": 9.7575,
+          "speed": 4.093121680613916,
+          "rtf": 0.24431230684791486,
+          "first_segment_s": 2.374865417019464,
+          "peak_mlx_bytes": 3486259888,
+          "rms": 0.04700396270015669,
+          "clipped_fraction": 0.0,
+          "segments": 1,
+          "file": null
+        }
+      ],
+      "active_mlx_after_warmup_bytes": 1784898360,
+      "process_peak_rss_bytes": 2035548160,
+      "host_before": {
+        "gpu": {
+          "name": "Apple M5 Max (40-core GPU)",
+          "vram_used_mb": 31469,
+          "vram_source": "gpu-alloc",
+          "vram_working_set_mb": 1172,
+          "engine_rss_mb": 5776,
+          "vram_total_mb": 131072,
+          "temp_c": null,
+          "thermal": "Nominal",
+          "thermal_level": 0,
+          "power_w": 14.15,
+          "power_instant_w": 13.87,
+          "power_combined_w": 23.54,
+          "power_cpu_w": 9.68,
+          "power_note": "gpu-block-only; excludes unified memory",
+          "power_limit_w": 55,
+          "util_pct": 38.6,
+          "util_busy_pct": 40.5,
+          "clock_max_mhz": 1620,
+          "freq_mhz": 1528
+        },
+        "engines": [
+          {
+            "id": "m5-splash",
+            "active": false,
+            "requests_running": 0
+          },
+          {
+            "id": "m5-kokoro",
+            "active": false,
+            "requests_running": 0
+          },
+          {
+            "id": "m5-chatterbox",
+            "active": false,
+            "requests_running": 0
+          },
+          {
+            "id": "m5-embeddings",
+            "active": false,
+            "requests_running": 0
+          }
+        ]
+      },
+      "host_after": {
+        "gpu": {
+          "name": "Apple M5 Max (40-core GPU)",
+          "vram_used_mb": 33326,
+          "vram_source": "gpu-alloc",
+          "vram_working_set_mb": 2242,
+          "engine_rss_mb": 5776,
+          "vram_total_mb": 131072,
+          "temp_c": null,
+          "thermal": "Nominal",
+          "thermal_level": 0,
+          "power_w": 16.45,
+          "power_instant_w": 14.67,
+          "power_combined_w": 21.59,
+          "power_cpu_w": 6.92,
+          "power_note": "gpu-block-only; excludes unified memory",
+          "power_limit_w": 55,
+          "util_pct": 100.0,
+          "util_busy_pct": 100.0,
+          "clock_max_mhz": 1620,
+          "freq_mhz": 1620
+        },
+        "engines": [
+          {
+            "id": "m5-splash",
+            "active": false,
+            "requests_running": 0
+          },
+          {
+            "id": "m5-kokoro",
+            "active": false,
+            "requests_running": 0
+          },
+          {
+            "id": "m5-chatterbox",
+            "active": false,
+            "requests_running": 0
+          },
+          {
+            "id": "m5-embeddings",
+            "active": false,
+            "requests_running": 0
+          }
+        ]
+      },
+      "runs": [
+        {
+          "precision": "fp16",
+          "round": 3,
+          "mode": "narration",
+          "seed": 42,
+          "synthesis_s": 2.2677449580514804,
+          "audio_s": 10.9575,
+          "speed": 4.831892564062864,
+          "rtf": 0.20695824394720333,
+          "first_segment_s": 2.258167583029717,
+          "peak_mlx_bytes": 3575035612,
+          "rms": 0.043166991224273206,
+          "clipped_fraction": 0.0,
+          "segments": 1,
+          "file": "round3-fp16-narration-seed42.wav"
+        },
+        {
+          "precision": "fp16",
+          "round": 3,
+          "mode": "expressive",
+          "seed": 42,
+          "synthesis_s": 1.5014522910350934,
+          "audio_s": 7.2375,
+          "speed": 4.820332982415649,
+          "rtf": 0.20745454798412344,
+          "first_segment_s": 1.4940840000053868,
+          "peak_mlx_bytes": 3155193717,
+          "rms": 0.04556787653816281,
+          "clipped_fraction": 0.0,
+          "segments": 1,
+          "file": "round3-fp16-expressive-seed42.wav"
+        },
+        {
+          "precision": "fp16",
+          "round": 3,
+          "mode": "cloning",
+          "seed": 42,
+          "synthesis_s": 2.5008876249194145,
+          "audio_s": 10.3975,
+          "speed": 4.157523871283516,
+          "rtf": 0.24052778311319203,
+          "first_segment_s": 2.4902255409397185,
+          "peak_mlx_bytes": 3483979416,
+          "rms": 0.04685201158025285,
+          "clipped_fraction": 0.0,
+          "segments": 1,
+          "file": "round3-fp16-cloning-seed42.wav"
+        },
+        {
+          "precision": "fp16",
+          "round": 3,
+          "mode": "narration",
+          "seed": 31415,
+          "synthesis_s": 2.118844209006056,
+          "audio_s": 10.2375,
+          "speed": 4.831643570813723,
+          "rtf": 0.20696890930462086,
+          "first_segment_s": 2.1092217919649556,
+          "peak_mlx_bytes": 3457053548,
+          "rms": 0.048616923839459855,
+          "clipped_fraction": 0.0,
+          "segments": 1,
+          "file": "round3-fp16-narration-seed31415.wav"
+        },
+        {
+          "precision": "fp16",
+          "round": 3,
+          "mode": "expressive",
+          "seed": 31415,
+          "synthesis_s": 1.7827328750863671,
+          "audio_s": 8.6375,
+          "speed": 4.845089312430805,
+          "rtf": 0.2063945441489282,
+          "first_segment_s": 1.7732354580657557,
+          "peak_mlx_bytes": 3290924160,
+          "rms": 0.0464656603124214,
+          "clipped_fraction": 0.0,
+          "segments": 1,
+          "file": "round3-fp16-expressive-seed31415.wav"
+        },
+        {
+          "precision": "fp16",
+          "round": 3,
+          "mode": "cloning",
+          "seed": 31415,
+          "synthesis_s": 2.4609861250501126,
+          "audio_s": 10.1975,
+          "speed": 4.143664158119685,
+          "rtf": 0.2413322995881454,
+          "first_segment_s": 2.4520893750013784,
+          "peak_mlx_bytes": 3452421095,
+          "rms": 0.04604687793474455,
+          "clipped_fraction": 0.0,
+          "segments": 1,
+          "file": "round3-fp16-cloning-seed31415.wav"
+        }
+      ]
+    }
+  ],
+  "summary": [
+    {
+      "precision": "4bit",
+      "mode": "narration",
+      "n": 6,
+      "median_synthesis_s": 1.1084211039706133,
+      "min_synthesis_s": 1.0950217079371214,
+      "max_synthesis_s": 1.1300604580901563,
+      "median_audio_s": 10.2975,
+      "aggregate_speed": 9.282828913545984,
+      "peak_mlx_bytes": 2633299755,
+      "parameter_bytes": 442357764,
+      "process_peak_rss_bytes": 1211711488
+    },
+    {
+      "precision": "4bit",
+      "mode": "expressive",
+      "n": 6,
+      "median_synthesis_s": 0.7163871870143339,
+      "min_synthesis_s": 0.6724793339380994,
+      "max_synthesis_s": 0.7627750410465524,
+      "median_audio_s": 6.5375,
+      "aggregate_speed": 9.126088429003186,
+      "peak_mlx_bytes": 2174730904,
+      "parameter_bytes": 442357764,
+      "process_peak_rss_bytes": 1211711488
+    },
+    {
+      "precision": "4bit",
+      "mode": "cloning",
+      "n": 6,
+      "median_synthesis_s": 1.4585203959723003,
+      "min_synthesis_s": 1.3841450409963727,
+      "max_synthesis_s": 1.5185332080582157,
+      "median_audio_s": 10.2375,
+      "aggregate_speed": 7.051711378432939,
+      "peak_mlx_bytes": 2698642136,
+      "parameter_bytes": 442357764,
+      "process_peak_rss_bytes": 1211711488
+    },
+    {
+      "precision": "8bit",
+      "mode": "narration",
+      "n": 6,
+      "median_synthesis_s": 1.2271680624689907,
+      "min_synthesis_s": 1.215108749922365,
+      "max_synthesis_s": 1.2408425000030547,
+      "median_audio_s": 10.7175,
+      "aggregate_speed": 8.73064434811104,
+      "peak_mlx_bytes": 2995769684,
+      "parameter_bytes": 733598724,
+      "process_peak_rss_bytes": 1513488384
+    },
+    {
+      "precision": "8bit",
+      "mode": "expressive",
+      "n": 6,
+      "median_synthesis_s": 0.9525531460531056,
+      "min_synthesis_s": 0.9032362500438467,
+      "max_synthesis_s": 1.0078951250761747,
+      "median_audio_s": 8.3575,
+      "aggregate_speed": 8.751893758969128,
+      "peak_mlx_bytes": 2765628506,
+      "parameter_bytes": 733598724,
+      "process_peak_rss_bytes": 1513488384
+    },
+    {
+      "precision": "8bit",
+      "mode": "cloning",
+      "n": 6,
+      "median_synthesis_s": 1.6069358955137432,
+      "min_synthesis_s": 1.5010829999810085,
+      "max_synthesis_s": 1.7137882079696283,
+      "median_audio_s": 10.9775,
+      "aggregate_speed": 6.841826325625005,
+      "peak_mlx_bytes": 2904713490,
+      "parameter_bytes": 733598724,
+      "process_peak_rss_bytes": 1513488384
+    },
+    {
+      "precision": "fp16",
+      "mode": "narration",
+      "n": 6,
+      "median_synthesis_s": 2.1888124375254847,
+      "min_synthesis_s": 2.106280375039205,
+      "max_synthesis_s": 2.2677449580514804,
+      "median_audio_s": 10.5975,
+      "aggregate_speed": 4.844888468798371,
+      "peak_mlx_bytes": 3575035612,
+      "parameter_bytes": 1286293988,
+      "process_peak_rss_bytes": 2035548160
+    },
+    {
+      "precision": "fp16",
+      "mode": "expressive",
+      "n": 6,
+      "median_synthesis_s": 1.6439768125419505,
+      "min_synthesis_s": 1.5014522910350934,
+      "max_synthesis_s": 1.7916165000060573,
+      "median_audio_s": 7.9375,
+      "aggregate_speed": 4.825047248629376,
+      "peak_mlx_bytes": 3290924160,
+      "parameter_bytes": 1286293988,
+      "process_peak_rss_bytes": 2035548160
+    },
+    {
+      "precision": "fp16",
+      "mode": "cloning",
+      "n": 6,
+      "median_synthesis_s": 2.475445396034047,
+      "min_synthesis_s": 2.4378307909937575,
+      "max_synthesis_s": 2.5008876249194145,
+      "median_audio_s": 10.2975,
+      "aggregate_speed": 4.165362544766554,
+      "peak_mlx_bytes": 3483979416,
+      "parameter_bytes": 1286293988,
+      "process_peak_rss_bytes": 2035548160
+    }
+  ]
+}
