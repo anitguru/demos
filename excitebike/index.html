@@ -1,0 +1,1341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+<title>EXCITEBIKE — Arcade Rider</title>
+<link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiIgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIj4KICA8cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHJ4PSI3IiBmaWxsPSIjMGEwYzFhIi8+CiAgPHJlY3QgeD0iMS40IiB5PSIxLjQiIHdpZHRoPSIyOS4yIiBoZWlnaHQ9IjI5LjIiIHJ4PSI1LjkiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzE1NTY2YiIgc3Ryb2tlLXdpZHRoPSIxLjYiLz4KICA8cmVjdCB4PSIxLjUiIHk9IjI1LjYiIHdpZHRoPSIyOSIgaGVpZ2h0PSIyIiByeD0iMSIgZmlsbD0iI2ZmMmJkNiIvPgogIDxnIHN0cm9rZT0iIzIyZTZmZiIgc3Ryb2tlLXdpZHRoPSIyLjQiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCI+CiAgICA8cGF0aCBkPSJNMi40IDguMiBINSIvPgogICAgPHBhdGggZD0iTTIuNCAxMiBINC4yIi8+CiAgPC9nPgogIDxnIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2VlZjJmZiIgc3Ryb2tlLXdpZHRoPSIyLjgiPgogICAgPGNpcmNsZSBjeD0iOS40IiBjeT0iMTkuMiIgcj0iNC45Ii8+CiAgICA8Y2lyY2xlIGN4PSIyMi44IiBjeT0iMTkuMiIgcj0iNC45Ii8+CiAgPC9nPgogIDxnIGZpbGw9IiMyMmU2ZmYiPgogICAgPGNpcmNsZSBjeD0iOS40IiBjeT0iMTkuMiIgcj0iMS41Ii8+CiAgICA8Y2lyY2xlIGN4PSIyMi44IiBjeT0iMTkuMiIgcj0iMS41Ii8+CiAgPC9nPgogIDxwYXRoIGQ9Ik05LjQgMTkuMiBMMTMuNiAxMS40IEwxOS40IDExLjkgTDIyLjggMTkuMiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZTAzYTNhIiBzdHJva2Utd2lkdGg9IjMiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPgogIDxwYXRoIGQ9Ik0xMi40IDE0LjIgTDEzLjQgOSBMMTguNCA5LjggTDE4IDE0LjQgWiIgZmlsbD0iIzJmNmJmZiIvPgogIDxwYXRoIGQ9Ik0xOC40IDkuOCBMMjEuNCAxMC4zIiBmaWxsPSJub25lIiBzdHJva2U9IiNmMmY0ZmYiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgPGNpcmNsZSBjeD0iMTUuNCIgY3k9IjUuOSIgcj0iMy43IiBmaWxsPSIjZmZlMTRkIi8+CiAgPHBhdGggZD0iTTE3LjYgNC42IEwxOS40IDUuNSBMMTkgNy42IEwxNy4zIDYuOCBaIiBmaWxsPSIjMTAxYTJjIi8+Cjwvc3ZnPgo=" type="image/svg+xml" />
+<link rel="icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAAmVBMVEX///8JCxoMGyoOKToRITASR1kVVmsQNEZeVy/Nt0WgmlwKDBr/4U0SEh0VGCUzrdci5v8gzeXly0hNTVckV3AuTZmKjJenqrfu8v/T0t4mKjhbKCs+Zu0va//T1uRmZnQuEyDSTlWqUWXgOjqYPkS2uceVXZx4e4gqNlrXrLWqja3w8PtVWGbSNzhxKHNsGGWgLpz/K9adH4tqy5ilAAAAAXRSTlMAQObYZgAAAaJJREFUOMuFk412ojAQhSFAUKd1bdPCGCsIEaSVdt2+/8P1JgQt9mfvORwymS83w3AmCKBQRN9IhIFXnMhvlcRDPpIyFYNm8/li5tcilTJy52UiaNDsxmrmIxKJhEeYyDF/6/LzOZ0JmYSBkClNDeLlmUilQAXiZ0CgiujParW6G+J7RyxoCtwBWKUXi3t15SAf8MV+4zFbLHLmda4/A0k6lrl52m63TwUzl1c1DA67amtVm0rRV2CpaV87oDJmo5eTKyIqG9xsWgfsjakQHc4A+oDCmCtTtV338FgaY54Rr/UZsPnmBftHHOv5GRaNJUagZy4UvbpzmtZ8BLrTQA4egEFPG2NeM+wp5hxV7EnDwgMFF0SudiQPaMIOFppgoS9AjHtvPdBTbYyylXnAotTXCvVxVuIhXaOVBR/9FTiU27bEa2YFF3aNREG5B5boflOqg325xDHrS/vp3dgHxV6F/Yv5GJWXTnaN2/F/ORvgfmz121+obV9at7B6Q9C6BQBx+veLTiIIu9P7jzp14WRwroTBEVejN9E4eiD+M7y/j/8H/rpD07K9r6EAAAAASUVORK5CYII=" sizes="32x32" type="image/png" />
+<link rel="icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAllBMVEX///8QMkQRO04SQ1YOKTkMGCdmYDPmzUm0pEsWHCcKDBr/4U3TvUsfWGsWdIcanbOIjJleY3EXExxyao0zbv/Mm6epnrAbLDpRWGedUllgXcjTPUKYkabu8v/Ky9jgOjrOXGIvNUseLFXEucurqrtNTVqVNDnaOzyeoa/X2OXk6PW1uMZtWF6+wc48GUdbOmFGKlzOJrJm26tnAAAAAXRSTlMAQObYZgAAALRJREFUGNNVj9sOgjAQRJdKESpCkbvQIpaboBX//+dcIhqZl9mcnUwyAGCQnwxA7UxKqbW3HTRzh3+TMeYcDq6FzkwDjp73BygBz/fxsFybBx9w9DFxCqMoTtIvyHh+jqKiwAwCQkshq0t9jSslmgW0Iuh6NfBb3+GJIBxpn3M5DfcqlRxBJurWmZpSsjYdw6VjGoeHaGshh5tcOrQuVfPU+pmoctYE5tdG8zpu1TIOgGzmvwG7khHyrwqQLQAAAABJRU5ErkJggg==" sizes="16x16" type="image/png" />
+<link rel="apple-touch-icon" href="data:image/png;base64,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" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<style>
+  :root{
+    --sky:#3697dd; --sky2:#4e97d3; --sky3:#1662ad;
+    --orange:#f15804; --red:#e2071b; --magenta:#c6046d; --mag2:#b02355;
+    --white:#faf9fa; --black:#040303; --gray:#9ea0a2; --gray2:#636363;
+    --panel:#05070f;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{
+    background:
+      radial-gradient(900px 520px at 50% 6%, #1b2c4e 0%, #0a0d18 58%, #04050a 100%);
+    color:var(--white); overflow:hidden;
+    font-family:"Courier New",Courier,ui-monospace,Menlo,monospace;
+    display:flex; align-items:center; justify-content:center;
+  }
+  #stage{
+    position:relative; width:min(100vw, calc(100vh * 16 / 9));
+    height:min(100vh, calc(100vw * 9 / 16));
+    background:#000; overflow:hidden;
+    box-shadow:0 0 0 3px var(--magenta), 0 0 0 6px var(--black), 0 26px 70px rgba(0,0,0,.9);
+  }
+  #scene{position:absolute; inset:0}
+  #scene canvas{display:block; width:100%; height:100%; image-rendering:pixelated; image-rendering:crisp-edges}
+  #scan{
+    position:absolute; inset:0; pointer-events:none; z-index:5; opacity:.14;
+    background:repeating-linear-gradient(to bottom, rgba(0,0,0,.75) 0 2px, rgba(0,0,0,0) 2px 4px);
+  }
+  #vig{position:absolute; inset:0; pointer-events:none; z-index:6;
+    box-shadow:inset 0 0 0 3px rgba(0,0,0,.55);}
+
+  /* ---------------- HUD ----------------
+     Bottom bar, dark strip, white pixel labels, violet value boxes. */
+  #hud{position:absolute; inset:0; z-index:8; pointer-events:none;
+       display:flex; flex-direction:column; justify-content:space-between;}
+  .row{display:flex; gap:14px; align-items:flex-end; flex-wrap:wrap}
+  .row.top{justify-content:center; padding:0 0 4px}
+  .row.bottom{
+    background:#000; border-top:3px solid #6f53e1; padding:5px 14px 6px;
+    justify-content:space-between; gap:10px;
+  }
+  .stat{
+    background:transparent; border:0; border-radius:0;
+    padding:0 0 2px; min-width:0; text-align:center; box-shadow:none;
+  }
+  .stat .label{display:block; font-size:12px; letter-spacing:.08em; color:#ff2a12; font-weight:bold;
+    text-shadow:2px 2px 0 #000}
+  .stat .value{display:block; font-size:17px; font-weight:bold; color:#fff;
+    background:#4b3ba8; border:2px solid #fff; padding:1px 8px 2px;
+    font-variant-numeric:tabular-nums; letter-spacing:.06em;}
+  #livesVal{color:#fff; background:#4b3ba8}
+  .heat{background:transparent; border:0; border-radius:0; padding:0; min-width:0;
+        text-align:center; box-shadow:none;}
+  .heat .label{font-size:12px; letter-spacing:.08em; color:#ff2a12; display:block; margin-bottom:2px;
+    font-weight:bold; text-shadow:2px 2px 0 #000}
+  .bar{height:15px; background:#000; border:2px solid #fff; border-radius:0; overflow:hidden; position:relative}
+  #heatFill{height:100%; width:0%; background:#e8121a;
+    transition:width .08s linear;}
+  #heatState{margin-top:2px; font-size:9px; letter-spacing:.1em; color:#8eda22; font-weight:bold;
+    text-shadow:1px 1px 0 #000}
+  .gauge{padding:0}
+  .gTrack{position:relative; height:15px; background:#000; border:2px solid #fff; border-radius:0; overflow:hidden}
+  .gZone{position:absolute; top:0; bottom:0; background:#6ab409}
+  .gNeedle{position:absolute; top:-2px; bottom:-2px; width:3px; margin-left:-1.5px; background:#fff; left:50%}
+  #pitchHint{margin-top:2px; font-size:9px; letter-spacing:.1em; color:#8eda22; font-weight:bold;
+    text-shadow:1px 1px 0 #000}
+  .bottom{align-self:stretch; text-align:right}
+  .help{font-size:10px; line-height:1.5; color:#fff; background:transparent;
+    border:0; border-radius:0; padding:2px 0; text-align:right; max-width:330px;}
+  .help b{color:#ffb020; font-weight:bold}
+  #msg{position:absolute; left:0; right:0; top:30%; z-index:9; text-align:center; pointer-events:none;
+    font-size:40px; font-weight:bold; letter-spacing:.06em; opacity:0; transform:scale(.85);
+    color:#fff; text-shadow:3px 3px 0 #e8121a; transition:opacity .12s ease, transform .12s ease;}
+  #msg.show{opacity:1; transform:scale(1)}
+
+  /* ---------------- overlay ---------------- */
+  #overlay{position:absolute; inset:0; z-index:10; display:flex; flex-direction:column;
+    align-items:center; justify-content:center; text-align:center; gap:14px;
+    background:rgba(0,0,0,.82);}
+  #overlay.hidden{display:none}
+  #overlayTitle{font-size:clamp(28px,5vw,60px); letter-spacing:.08em; color:#ffb020;
+    text-shadow:4px 4px 0 #e8121a, 8px 8px 0 #5941c0;}
+  #overlayBody{font-size:clamp(12px,1.4vw,16px); line-height:1.9; color:#fff;
+    background:#000; border:3px solid #6f53e1; padding:10px 20px; box-shadow:6px 6px 0 #5941c0;}
+  #overlayBody .k{color:#8eda22; font-weight:bold}
+  .blink{margin-top:4px; font-size:clamp(13px,1.6vw,19px); color:#fff;
+    letter-spacing:.1em; animation:bl 1s steps(2,end) infinite; text-shadow:3px 3px 0 #5941c0;}
+  @keyframes bl{50%{opacity:.2}}
+  #err{position:absolute; inset:0; z-index:20; display:none; align-items:center; justify-content:center;
+    text-align:center; color:#ff6a6a; font-size:16px; padding:40px;}
+</style>
+</head>
+<body>
+<div id="stage">
+  <div id="scene"></div>
+  <div id="scan"></div>
+  <div id="vig"></div>
+
+  <div id="hud">
+    <div class="row top"></div>
+    <div class="row bottom">
+      <div class="stat"><span class="label">TIME</span><span class="value" id="timeVal">0.00</span></div>
+      <div class="stat"><span class="label">DIST</span><span class="value" id="distVal">0 m</span></div>
+      <div class="stat"><span class="label">SPEED</span><span class="value" id="speedVal">0 km/h</span></div>
+      <div class="stat"><span class="label">BIKES</span><span class="value" id="livesVal">3</span></div>
+      <div class="heat">
+        <span class="label">TEMP</span>
+        <div class="bar"><div id="heatFill"></div></div>
+        <div id="heatState">READY</div>
+      </div>
+      <div class="heat" id="pitchBox">
+        <span class="label">PITCH</span>
+        <div class="gauge">
+          <div class="gTrack">
+            <div class="gZone" id="pitchZone"></div>
+            <div class="gNeedle" id="pitchNeedle"></div>
+          </div>
+        </div>
+        <div id="pitchHint">LEVEL</div>
+      </div>
+      <div class="help">
+        <b>A</b> throttle &nbsp;·&nbsp; <b>D</b> turbo &nbsp;·&nbsp; <b>W</b>/<b>S</b> lane &nbsp;·&nbsp; <b>SPACE</b> jump &nbsp;·&nbsp;
+        <b>←</b>/<b>→</b> pitch &nbsp;·&nbsp; <b>R</b> restart
+      </div>
+    </div>
+  </div>
+
+  <div id="msg"></div>
+
+  <div id="overlay">
+    <div id="overlayTitle">EXCITEBIKE</div>
+    <div id="overlayBody">
+      <span class="k">A</span> throttle &nbsp; <span class="k">D</span> turbo (watch the overheat meter)<br>
+      <span class="k">W</span> shift inward &nbsp; <span class="k">S</span> shift outward &nbsp; <span class="k">SPACE</span> hop<br>
+      <span class="k">←</span> <span class="k">→</span> pitch the bike in mid-air — match the ground angle on landing
+    </div>
+    <div class="blink" id="overlayHint">PRESS ENTER OR CLICK TO RIDE</div>
+  </div>
+  <div id="err"></div>
+</div>
+
+<script>
+(function () {
+'use strict';
+
+if (typeof THREE === 'undefined') {
+  document.getElementById('err').style.display = 'flex';
+  document.getElementById('err').textContent =
+    'Three.js could not be loaded from the CDN. Check your network connection and reload.';
+  document.getElementById('overlay').classList.add('hidden');
+  return;
+}
+
+/* ============================================================ constants */
+const LANE_COUNT  = 4;
+const LANE_W      = 3.4;
+const CHUNK_LEN   = 80;
+const CHUNK_COUNT = 14;
+
+const laneZ     = (i) => (i - (LANE_COUNT - 1) / 2) * LANE_W;
+
+const MAX_SPEED      = 24;
+const TURBO_SPEED    = 40;
+const ACCEL          = 17;
+const TURBO_ACCEL    = 26;
+const DRAG           = 6;
+const JUMP_V         = 12.5;
+const GRAVITY        = 38;
+const HEAT_PER_SEC   = 32;
+const HEAT_COOL_SEC  = 14;
+const COOLDOWN_TIME  = 3;
+const PITCH_RATE     = 2.6;
+const PITCH_CLAMP    = 1.25;
+const LAND_TOLERANCE = 0.34;
+const LAND_SLOPE_TOL = 0.25;     // extra tolerance when the ground is steep
+const START_LIVES    = 3;
+
+/* ============================================================ dom */
+const $ = (id) => document.getElementById(id);
+const el = {
+  scene: $('scene'), time: $('timeVal'), dist: $('distVal'), speed: $('speedVal'),
+  lives: $('livesVal'), heatFill: $('heatFill'), heatState: $('heatState'),
+  msg: $('msg'), overlay: $('overlay'), overlayTitle: $('overlayTitle'),
+  overlayBody: $('overlayBody'), overlayHint: $('overlayHint'),
+  pitchZone: $('pitchZone'), pitchNeedle: $('pitchNeedle'), pitchHint: $('pitchHint')
+};
+
+/* ============================================================ renderer / scene
+   Everything is drawn with flat (unlit) colours and the framebuffer is kept
+   small, then scaled up with nearest-neighbour, to get the chunky NES look. */
+const renderer = new THREE.WebGLRenderer({ antialias: false, powerPreference: 'high-performance' });
+renderer.setPixelRatio(1);
+renderer.setClearColor(0x6f53e1, 1);
+el.scene.appendChild(renderer.domElement);
+
+const scene = new THREE.Scene();
+scene.fog = new THREE.Fog(0x6f53e1, 120, 420);
+
+const camera = new THREE.PerspectiveCamera(52, 16 / 9, 0.1, 700);
+camera.position.set(8, 5.4, 12.6);
+
+scene.add(new THREE.HemisphereLight(0xffffff, 0xffffff, 1));
+const key = new THREE.DirectionalLight(0xffffff, 1);
+key.position.set(14, 26, 12);
+scene.add(key);
+const rim = new THREE.DirectionalLight(0xffffff, 1);
+rim.position.set(-18, 10, -16);
+scene.add(rim);
+const bikeLight = new THREE.PointLight(0xffffff, 0, 0, 2);
+scene.add(bikeLight);
+
+/* ============================================================ materials
+   Palette sampled directly from the NES playfield: flat saturated colour,
+   hard black keylines, no gradients, no metallic shine. */
+const M = {
+  grass:    new THREE.MeshBasicMaterial({ vertexColors: true }),
+  grassFar: new THREE.MeshBasicMaterial({ color: 0x5da207, fog: false }),
+  dirtEdge: new THREE.MeshBasicMaterial({ color: 0xb0540e }),
+  track:    new THREE.MeshBasicMaterial({ vertexColors: true }),
+  laneLine: new THREE.MeshBasicMaterial({ color: 0x635f0a }),
+  pit:      new THREE.MeshBasicMaterial({ color: 0x030303 }),
+  dirt:     new THREE.MeshBasicMaterial({ color: 0xb0540e }),
+  ramp:     new THREE.MeshBasicMaterial({ color: 0xe98734, side: THREE.DoubleSide }),
+  rampSide: new THREE.MeshBasicMaterial({ color: 0x635f0a, side: THREE.DoubleSide }),
+  rampBack: new THREE.MeshBasicMaterial({ color: 0xdbb5cf, side: THREE.DoubleSide }),
+  rampLip:  new THREE.MeshBasicMaterial({ color: 0xe8121a }),
+  sky:      new THREE.MeshBasicMaterial({ color: 0x6f53e1 }),
+  neonDim:  new THREE.MeshBasicMaterial({ color: 0xfaf9fa }),
+  neonDim2: new THREE.MeshBasicMaterial({ color: 0xdbb5cf }),
+  rail:     new THREE.MeshBasicMaterial({ color: 0xdbb5cf }),
+  hurdleA:  new THREE.MeshBasicMaterial({ color: 0xe8121a }),
+  hurdleB:  new THREE.MeshBasicMaterial({ color: 0xfaf9fa }),
+  bldg:     new THREE.MeshBasicMaterial({ color: 0x5941c0, fog: false }),
+  bldgNear: new THREE.MeshBasicMaterial({ color: 0x8a6bf6, fog: false }),
+  bldgWin:  new THREE.MeshBasicMaterial({ color: 0x8eda22 }),
+  bark:     new THREE.MeshBasicMaterial({ color: 0xb0540e }),
+  leaf:     new THREE.MeshBasicMaterial({ color: 0x79c712 }),
+  frame:    new THREE.MeshBasicMaterial({ color: 0xe8121a }),
+  frame2:   new THREE.MeshBasicMaterial({ color: 0xfaf9fa }),
+  tire:     new THREE.MeshBasicMaterial({ color: 0x030303 }),
+  chrome:   new THREE.MeshBasicMaterial({ color: 0xfaf9fa }),
+  dark:     new THREE.MeshBasicMaterial({ color: 0x030303 }),
+  riderShirt: new THREE.MeshBasicMaterial({ color: 0xe8121a }),
+  riderPants: new THREE.MeshBasicMaterial({ color: 0xfaf9fa }),
+  helmet:   new THREE.MeshBasicMaterial({ color: 0xfaf9fa }),
+  visor:    new THREE.MeshBasicMaterial({ color: 0x030303 }),
+  glow:     new THREE.MeshBasicMaterial({ color: 0xfaf9fa }),
+  speedLine:new THREE.MeshBasicMaterial({ color: 0xdbb5cf })
+};
+
+/* ============================================================ geometry helpers */
+const BOX = new THREE.BoxGeometry(1, 1, 1);
+const CYL = new THREE.CylinderGeometry(1, 1, 1, 16);
+const SPH = new THREE.SphereGeometry(1, 18, 12);
+BOX.userData.shared = true; CYL.userData.shared = true; SPH.userData.shared = true;
+
+function box(w, h, d, mat, x, y, z) {
+  const m = new THREE.Mesh(BOX, mat);
+  m.scale.set(w, h, d);
+  m.position.set(x || 0, y || 0, z || 0);
+  return m;
+}
+function cyl(r, h, mat, x, y, z, seg) {
+  const geo = seg ? new THREE.CylinderGeometry(1, 1, 1, seg) : CYL;
+  const m = new THREE.Mesh(geo, mat);
+  m.scale.set(r, h, r);
+  m.position.set(x || 0, y || 0, z || 0);
+  return m;
+}
+function sph(r, mat, x, y, z) {
+  const m = new THREE.Mesh(SPH, mat);
+  m.scale.set(r, r, r);
+  m.position.set(x || 0, y || 0, z || 0);
+  return m;
+}
+
+/* ============================================================ outline helper
+   NES sprites have a hard black keyline around every shape. A back-face
+   shell scaled up slightly produces that outline with flat geometry. */
+const OUTLINE = new THREE.MeshBasicMaterial({ color: 0x040303, side: THREE.BackSide });
+const OUTLINE_BOX = new THREE.BoxGeometry(1, 1, 1);
+const OUTLINE_CYL = new THREE.CylinderGeometry(1, 1, 1, 12);
+OUTLINE_BOX.userData.shared = true; OUTLINE_CYL.userData.shared = true;
+
+function outlineBox(w, h, d, x, y, z, grow) {
+  const g = (grow || 0.1);
+  const m = new THREE.Mesh(OUTLINE_BOX, OUTLINE);
+  m.scale.set(w + g, h + g, d + g);
+  m.position.set(x || 0, y || 0, z || 0);
+  return m;
+}
+function outlineCyl(r, h, x, y, z, grow) {
+  const g = (grow || 0.08);
+  const m = new THREE.Mesh(OUTLINE_CYL, OUTLINE);
+  m.scale.set(r + g, h + g, r + g);
+  m.position.set(x || 0, y || 0, z || 0);
+  return m;
+}
+/* a filled part with a black keyline: outline first, colour on top */
+function part(parent, w, h, d, mat, x, y, z, grow) {
+  parent.add(outlineBox(w, h, d, x, y, z, grow));
+  parent.add(box(w, h, d, mat, x, y, z));
+}
+
+/* ============================================================ bike
+   Rebuilt as a blocky NES sprite: every part is a coloured box wrapped in a
+   black keyline, matching the original's hand-drawn outline. */
+const bikeRoot = new THREE.Group();          // world position
+const spinGroup = new THREE.Group();         // crash tumble
+const tiltGroup = new THREE.Group();         // pitch
+bikeRoot.add(spinGroup);
+spinGroup.add(tiltGroup);
+scene.add(bikeRoot);
+
+function makeWheel(radius) {
+  const g = new THREE.Group();
+  // black tyre ring, white rim, chunky cross spokes
+  const tire = new THREE.Mesh(new THREE.CylinderGeometry(radius, radius, 0.24, 14), M.tire);
+  g.add(tire);
+  const rim = new THREE.Mesh(new THREE.CylinderGeometry(radius * 0.56, radius * 0.56, 0.28, 10), M.chrome);
+  g.add(rim);
+  const hbar = box(radius * 1.0, 0.13, 0.13, M.chrome, 0, 0, 0);
+  const vbar = box(0.13, radius * 1.0, 0.13, M.chrome, 0, 0, 0);
+  g.add(hbar, vbar);
+  g.rotation.x = Math.PI / 2;   // axle along Z
+  return { g, tire, spoke: hbar };
+}
+
+const wheelF = makeWheel(0.5);
+const wheelR = makeWheel(0.56);
+wheelF.g.position.set(1.12, 0.5, 0);
+wheelR.g.position.set(-1.05, 0.56, 0);
+tiltGroup.add(wheelF.g, wheelR.g);
+
+/* chassis */
+part(tiltGroup, 2.5, 0.3, 0.44, M.frame, 0.05, 0.62, 0, 0.13);   // red frame
+part(tiltGroup, 0.85, 0.34, 0.4, M.frame2, 0.35, 0.86, 0, 0.13); // white tank
+part(tiltGroup, 0.72, 0.22, 0.42, M.dark, -0.62, 0.86, 0, 0.11);  // black seat
+part(tiltGroup, 0.22, 0.62, 0.22, M.frame2, 1.02, 0.9, 0, 0.1);  // steering column
+part(tiltGroup, 1.0, 0.12, 0.7, M.frame2, 1.02, 1.2, 0, 0.1);    // handle bar
+part(tiltGroup, 0.5, 0.5, 0.36, M.frame, -1.25, 0.75, 0, 0.13);  // red engine
+{
+  const pipe = outlineCyl(0.12, 1.5, -1.15, 0.55, 0.34, 0.08);
+  pipe.rotation.z = Math.PI / 2;
+  tiltGroup.add(pipe);
+  const pipeIn = cyl(0.12, 1.5, M.chrome, -1.15, 0.55, 0.34, 8);
+  pipeIn.rotation.z = Math.PI / 2;
+  tiltGroup.add(pipeIn);
+}
+part(tiltGroup, 0.16, 0.12, 0.26, M.glow, 1.3, 0.92, 0, 0.08);     // headlight
+part(tiltGroup, 0.14, 0.12, 0.34, M.hurdleA, -1.45, 0.72, 0, 0.08); // tail light
+
+/* rider: orange jersey, white helmet, leaning forward */
+const rider = new THREE.Group();
+part(rider, 0.52, 0.66, 0.46, M.riderShirt, 0.02, 1.36, 0, 0.12);   // orange torso
+part(rider, 0.36, 0.3, 0.42, M.riderPants, -0.42, 1.12, 0, 0.11);  // white hips
+for (const z of [0.22, -0.22]) {
+  const ao = outlineBox(0.78, 0.15, 0.15, 0.38, 1.48, z, 0.1);
+  ao.rotation.z = -0.66; ao.rotation.y = z > 0 ? 0.18 : -0.18;
+  const ai = box(0.74, 0.11, 0.11, M.riderShirt, 0.38, 1.48, z);
+  ai.rotation.z = -0.66; ai.rotation.y = z > 0 ? 0.18 : -0.18;
+  rider.add(ao, ai);
+  const lo = outlineBox(0.19, 0.58, 0.19, 0.1, 0.86, z, 0.11);
+  lo.rotation.z = 0.40;
+  const li = box(0.15, 0.54, 0.15, M.riderPants, 0.1, 0.86, z);
+  li.rotation.z = 0.40;
+  rider.add(lo, li);
+}
+part(rider, 0.56, 0.56, 0.52, M.helmet, 0.36, 1.84, 0, 0.12);  // white helmet
+part(rider, 0.12, 0.18, 0.44, M.visor, 0.62, 1.82, 0, 0.07);  // black visor
+tiltGroup.add(rider);
+
+/* speed streaks that trail the bike, like the original's motion lines */
+const speedLines = new THREE.Group();
+for (let i = 0; i < 5; i++) {
+  const l = box(0.9 + i * 0.35, 0.09, 0.09, M.speedLine, -1.7 - i * 0.55, 0.55 + (i % 3) * 0.42, (i - 2) * 0.22);
+  l.userData.phase = i * 0.7;
+  speedLines.add(l);
+}
+tiltGroup.add(speedLines);
+
+/* ============================================================ background scenery
+   Flat blue sky in stepped bands, chunky white clouds, and a far mountain
+   ridge — the same vocabulary the NES original used. */
+const skyGroup = new THREE.Group();
+scene.add(skyGroup);
+{
+  // stepped sky bands: flat colours only, no gradient.
+  // The group is pinned to the camera so the backdrop always fills the frame.
+  const bands = [
+    { c: 0x5941c0, y: -50, h: 110 },
+    { c: 0x6f53e1, y: 55, h: 110 },
+    { c: 0x8a6bf6, y: 160, h: 150 }
+  ];
+  for (const b of bands) {
+    const g = new THREE.PlaneGeometry(3000, b.h);
+    const m = new THREE.Mesh(g, new THREE.MeshBasicMaterial({ color: b.c, fog: false, depthWrite: false }));
+    m.position.set(0, b.y, 0);
+    m.renderOrder = -10;
+    skyGroup.add(m);
+  }
+  // blocky clouds
+  const cloudMat = new THREE.MeshBasicMaterial({ color: 0xfaf9fa, fog: false });
+  const cloudShade = new THREE.MeshBasicMaterial({ color: 0x8a6bf6, fog: false });
+  const cloudRnd = mulberry32(20240607);
+  for (let i = 0; i < 20; i++) {
+    const cx = (cloudRnd() - 0.5) * 420;
+    const cy = 10 + cloudRnd() * 130;
+    const cz = 24 + cloudRnd() * 16;
+    const s = 3 + cloudRnd() * 4;
+    const g = new THREE.Group();
+    const lobes = 3 + Math.floor(cloudRnd() * 3);
+    for (let k = 0; k < lobes; k++) {
+      const w = s * (0.8 + cloudRnd() * 1.1);
+      const h = s * (0.5 + cloudRnd() * 0.4);
+      const lx = (k - lobes / 2) * s * 0.85;
+      g.add(box(w, h, 1.5, cloudMat, lx, (k % 2) * s * 0.28, 0));
+    }
+    // flat shaded underside
+    g.add(box(s * 2.4, s * 0.3, 1.5, cloudShade, 0, -s * 0.34, 0.4));
+    g.position.set(cx, cy, cz);
+    skyGroup.add(g);
+  }
+}
+
+/* the sky is pinned to the camera so the bands never run out */
+function followSky(camX, camY, camZ) {
+  skyGroup.position.set(
+    Math.round(camX / 10) * 10,
+    0,
+    camZ - 130
+  );
+}
+
+/* ============================================================ deterministic rng */
+function hash32(n) {
+  n = (n ^ 61) ^ (n >>> 16);
+  n = (n + (n << 3)); n = n ^ (n >>> 4);
+  n = Math.imul(n, 0x27d4eb2d); n = n ^ (n >>> 15);
+  return n >>> 0;
+}
+function mulberry32(a) {
+  return function () {
+    a |= 0; a = (a + 0x6D2B79F5) | 0;
+    let t = Math.imul(a ^ (a >>> 15), 1 | a);
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+}
+function popcount(n) { let c = 0; while (n) { n &= n - 1; c++; } return c; }
+
+/* ============================================================ terrain (shared by physics + meshes) */
+const TR_A = 0.28, TR_W1 = 0.045, TR_B = 0.18, TR_W2 = 0.0121, TR_PH = 2.1;
+function terrainHeight(x) { return TR_A * Math.sin(x * TR_W1) + TR_B * Math.sin(x * TR_W2 + TR_PH); }
+function terrainSlope(x)  { return TR_A * TR_W1 * Math.cos(x * TR_W1) + TR_B * TR_W2 * Math.cos(x * TR_W2 + TR_PH); }
+function terrainCurv(x)   { return -TR_A * TR_W1 * TR_W1 * Math.sin(x * TR_W1) - TR_B * TR_W2 * TR_W2 * Math.sin(x * TR_W2 + TR_PH); }
+
+const STEP        = 4;          // terrain sampling step (m)
+const RAMP_LEN    = 4.5;        // ramp body length
+const RAMP_H      = 1.6;        // ramp lip height above ground
+const RAMP_SLOPE  = RAMP_H / RAMP_LEN;
+const MOUND_LEN   = 9.0;
+const MOUND_H     = 0.95;
+const PIT_DEPTH   = 5.0;
+
+/* ============================================================ obstacle generation */
+function makeObstacle(lane, type, x, rnd) {
+  const o = { lane, type, x };
+  if (type === 'ramp') {
+    o.rx0 = x - RAMP_LEN; o.rx1 = x; o.slope = RAMP_SLOPE;
+  } else if (type === 'mound') {
+    o.mx0 = x - MOUND_LEN / 2; o.mx1 = x + MOUND_LEN / 2;
+  } else if (type === 'gap') {
+    const cells = 1;                        // 4 m pit
+    o.len = cells * STEP;
+    o.gx0 = Math.round((x - o.len / 2) / STEP) * STEP;
+    o.gx1 = o.gx0 + o.len;
+    o.x = (o.gx0 + o.gx1) / 2;
+  } else if (type === 'hurdle') {
+    o.h = 0.85;
+    o.hw = 1.5;
+  }
+  return o;
+}
+function obstacleExtent(o) {
+  switch (o.type) {
+    case 'ramp':   return [o.rx0, o.rx1];
+    case 'mound':  return [o.mx0, o.mx1];
+    case 'gap':    return [o.gx0, o.gx1];
+    default:       return [o.x - 0.35, o.x + 0.35];
+  }
+}
+function genObstacles(chunkIndex, startX) {
+  const rnd = mulberry32(hash32(chunkIndex * 7919 + 13));
+  const list = [];
+  for (let lane = 0; lane < LANE_COUNT; lane++) {
+    let x = startX + 16 + rnd() * 18;
+    let prev = null;
+    while (x < startX + CHUNK_LEN - 10) {
+      const roll = rnd();
+      let type = roll < 0.30 ? 'ramp' : roll < 0.56 ? 'mound' : roll < 0.84 ? 'hurdle' : 'gap';
+      if (type === 'gap' && prev === 'gap') type = 'mound';
+      list.push(makeObstacle(lane, type, x, rnd));
+      prev = type;
+      x += 17 + rnd() * 16;
+    }
+  }
+  // keep at least two lanes passable at any point along the chunk
+  for (let guard = 0; guard < 60; guard++) {
+    const bins = new Int32Array(CHUNK_LEN + 1);
+    for (const o of list) {
+      const e = obstacleExtent(o);
+      const b0 = Math.max(0, Math.floor(e[0] - startX));
+      const b1 = Math.min(CHUNK_LEN, Math.ceil(e[1] - startX));
+      for (let b = b0; b <= b1; b++) bins[b] |= (1 << o.lane);
+    }
+    let worst = -1, worstCount = 0;
+    for (let b = 0; b <= CHUNK_LEN; b++) {
+      const c = popcount(bins[b]);
+      if (c >= 3 && c > worstCount) { worstCount = c; worst = b; }
+    }
+    if (worst < 0) break;
+    let victim = null;
+    for (const o of list) {
+      const e = obstacleExtent(o);
+      if (e[0] <= startX + worst + 1 && e[1] >= startX + worst) {
+        if (!victim || o.x > victim.x) victim = o;
+      }
+    }
+    if (!victim) break;
+    list.splice(list.indexOf(victim), 1);
+  }
+  return list;
+}
+
+/* ============================================================ mesh helpers for track pieces */
+function buildSurfaceStrip(x0, x1, lane, heightFn, mat) {
+  const n = Math.max(2, Math.round((x1 - x0) / 0.7));
+  const w = LANE_W, hw = w / 2, zc = laneZ(lane);
+  const pos = [], idx = [];
+  const push = (x, y, z) => { pos.push(x, y, z); return pos.length / 3 - 1; };
+  const top = [];
+  for (let i = 0; i <= n; i++) {
+    const x = x0 + (x1 - x0) * (i / n);
+    const y = heightFn(x);
+    top.push([push(x, y, zc - hw), push(x, y, zc + hw)]);
+  }
+  for (let i = 0; i < n; i++) {
+    const a = top[i], b = top[i + 1];
+    idx.push(a[0], a[1], b[1], a[0], b[1], b[0]);
+  }
+  for (const s of [-1, 1]) {
+    const z = zc + s * hw;
+    const rows = [];
+    for (let i = 0; i <= n; i++) {
+      const x = x0 + (x1 - x0) * (i / n);
+      rows.push([push(x, heightFn(x), z), push(x, terrainHeight(x) - 0.4, z)]);
+    }
+    for (let i = 0; i < n; i++) {
+      const a = rows[i], b = rows[i + 1];
+      if (s > 0) idx.push(a[0], a[1], b[1], a[0], b[1], b[0]);
+      else        idx.push(a[0], b[1], a[1], a[0], b[0], b[1]);
+    }
+  }
+  for (const x of [x0, x1]) {
+    const yT = heightFn(x), yB = terrainHeight(x) - 0.4;
+    const q = [push(x, yT, zc - hw), push(x, yT, zc + hw), push(x, yB, zc + hw), push(x, yB, zc - hw)];
+    if (x === x0) idx.push(q[0], q[1], q[2], q[0], q[2], q[3]);
+    else         idx.push(q[0], q[2], q[1], q[0], q[3], q[2]);
+  }
+  const g = new THREE.BufferGeometry();
+  g.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3));
+  g.setIndex(idx);
+  g.computeVertexNormals();
+  return new THREE.Mesh(g, mat);
+}
+function buildGroundStrip(x0, x1, lane, holes) {
+  const segs = [];
+  let cur = x0;
+  const sorted = holes.slice().sort((a, b) => a.gx0 - b.gx0);
+  for (const h of sorted) {
+    if (h.gx0 > cur) segs.push([cur, h.gx0]);
+    cur = Math.max(cur, h.gx1);
+  }
+  if (cur < x1) segs.push([cur, x1]);
+
+  const group = new THREE.Group();
+  // NES track: orange dirt with a darker checker and olive lane grooves
+  const baseCol = new THREE.Color(0xe98734);
+  const altCol  = new THREE.Color(0xd86c25);
+  const lineCol = new THREE.Color(0x635f0a);
+  const dashCol = new THREE.Color(0x1662ad);
+
+  for (const [sx0, sx1] of segs) {
+    const len = sx1 - sx0;
+    if (len <= 0.01) continue;
+    const g = new THREE.PlaneGeometry(len, LANE_W, Math.max(1, Math.round(len / STEP)), 6);
+    g.rotateX(-Math.PI / 2);
+    const p = g.attributes.position;
+    const colors = new Float32Array(p.count * 3);
+    const cx = (sx0 + sx1) / 2;
+    for (let i = 0; i < p.count; i++) {
+      const wx = cx + p.getX(i);
+      const lz = p.getZ(i);
+      p.setY(i, terrainHeight(wx));
+      const dash = (Math.floor(wx / 2) % 2) === 0;
+      const c = dash ? baseCol : altCol;
+      colors[i * 3] = c.r; colors[i * 3 + 1] = c.g; colors[i * 3 + 2] = c.b;
+    }
+    g.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+    g.computeVertexNormals();
+    const m = new THREE.Mesh(g, M.track);
+    m.position.set(cx, 0, laneZ(lane));
+    group.add(m);
+  }
+  // crisp dark lane dividers drawn as their own thin strips
+  for (const [sx0, sx1] of segs) {
+    const len = sx1 - sx0;
+    if (len <= 0.01) continue;
+    for (const s of [-1, 1]) {
+      const z = laneZ(lane) + s * (LANE_W / 2);
+      const g = new THREE.PlaneGeometry(len, 0.16, Math.max(1, Math.round(len / STEP)), 1);
+      g.rotateX(-Math.PI / 2);
+      const p = g.attributes.position;
+      const cx = (sx0 + sx1) / 2;
+      for (let i = 0; i < p.count; i++) {
+        p.setY(i, terrainHeight(cx + p.getX(i)) + 0.012);
+      }
+      g.computeVertexNormals();
+      const m = new THREE.Mesh(g, M.laneLine);
+      m.position.set(cx, 0, z);
+      group.add(m);
+    }
+  }
+  return group;
+}
+
+function buildObstacleMesh(o) {
+  const g = new THREE.Group();
+  const zc = laneZ(o.lane);
+  if (o.type === 'ramp') {
+    // a solid wedge: orange riding surface, olive side walls, pink back
+    const half = LANE_W * 0.5;
+    const x0 = o.rx0, x1 = o.rx1;
+    const y0 = terrainHeight(x0), y1 = terrainHeight(x1) + RAMP_H;
+    const base = Math.min(y0, terrainHeight(x1)) - 0.45;
+
+    const quad = (pts, mat) => {
+      const geo = new THREE.BufferGeometry();
+      const pos = new Float32Array(pts.length * 3);
+      for (let i = 0; i < pts.length; i++) {
+        pos[i * 3] = pts[i][0]; pos[i * 3 + 1] = pts[i][1]; pos[i * 3 + 2] = pts[i][2];
+      }
+      geo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+      geo.setIndex([0, 1, 2, 0, 2, 3]);
+      geo.computeVertexNormals();
+      const m = new THREE.Mesh(geo, mat);
+      m.material.side = THREE.DoubleSide;
+      return m;
+    };
+    // riding surface
+    g.add(quad([[x0, y0, zc - half], [x1, y1, zc - half], [x1, y1, zc + half], [x0, y0, zc + half]], M.ramp));
+    // near and far side walls
+    g.add(quad([[x0, y0, zc + half], [x1, y1, zc + half], [x1, base, zc + half], [x0, base, zc + half]], M.rampSide));
+    g.add(quad([[x0, y0, zc - half], [x1, y1, zc - half], [x1, base, zc - half], [x0, base, zc - half]], M.rampSide));
+    // pink back wall
+    g.add(quad([[x1, y1, zc - half], [x1, y1, zc + half], [x1, base, zc + half], [x1, base, zc - half]], M.rampBack));
+    // black-outlined lip marker
+    g.add(box(0.4, 0.22, LANE_W * 0.86, M.dark, x1 - 0.2, y1 - 0.02, zc));
+    g.add(box(0.28, 0.12, LANE_W * 0.86, M.rampLip, x1 - 0.2, y1 + 0.1, zc));
+  } else if (o.type === 'mound') {
+    g.add(buildSurfaceStrip(o.mx0, o.mx1, o.lane, (x) => {
+      const t = (x - o.mx0) / MOUND_LEN;
+      return terrainHeight(x) + MOUND_H * Math.sin(Math.PI * t);
+    }, M.dirt));
+  } else if (o.type === 'hurdle') {
+    const base = terrainHeight(o.x);
+    // low red/white striped fence, as in the original
+    g.add(box(0.2, o.h + 0.3, 0.2, M.dark, o.x, base + (o.h + 0.3) / 2, zc - o.hw));
+    g.add(box(0.2, o.h + 0.3, 0.2, M.dark, o.x, base + (o.h + 0.3) / 2, zc + o.hw));
+    for (let k = 0; k < 3; k++) {
+      const y = base + 0.24 + k * (o.h / 3);
+      g.add(box(0.2, 0.2, o.hw * 2, M.dark, o.x, y, zc));
+      g.add(box(0.24, 0.12, o.hw * 2 - 0.1, k % 2 ? M.hurdleB : M.hurdleA, o.x, y, zc));
+    }
+  } else if (o.type === 'gap') {
+    const cx = (o.gx0 + o.gx1) / 2;
+    const w = LANE_W * 0.94;
+    const pit = box(o.len, PIT_DEPTH, w, M.pit, cx, terrainHeight(cx) - PIT_DEPTH / 2 - 0.2, zc);
+    g.add(pit);
+    // magenta edge markers, NES style
+    g.add(box(0.3, 0.14, w, M.dark, o.gx0 + 0.15, terrainHeight(o.gx0) + 0.02, zc));
+    g.add(box(0.2, 0.14, w, M.neonDim2, o.gx0 + 0.15, terrainHeight(o.gx0) + 0.1, zc));
+    g.add(box(0.3, 0.14, w, M.dark, o.gx1 - 0.15, terrainHeight(o.gx1) + 0.02, zc));
+    g.add(box(0.2, 0.14, w, M.neonDim2, o.gx1 - 0.15, terrainHeight(o.gx1) + 0.1, zc));
+  }
+  return g;
+}
+
+/* ============================================================ chunks */
+const chunks = [];
+function buildChunk(index) {
+  const startX = index * CHUNK_LEN;
+  const group = new THREE.Group();
+  const obstacles = genObstacles(index, startX);
+
+  for (let lane = 0; lane < LANE_COUNT; lane++) {
+    const holes = obstacles.filter((o) => o.lane === lane && o.type === 'gap');
+    group.add(buildGroundStrip(startX, startX + CHUNK_LEN, lane, holes));
+  }
+  // shoulders: dirt apron, then a green verge behind the far rail
+  {
+    const g = new THREE.PlaneGeometry(CHUNK_LEN, 9, Math.round(CHUNK_LEN / STEP), 2);
+    g.rotateX(-Math.PI / 2);
+    const p = g.attributes.position;
+    const cx = startX + CHUNK_LEN / 2;
+    for (let i = 0; i < p.count; i++) {
+      p.setY(i, terrainHeight(cx + p.getX(i)) - 0.03);
+    }
+    g.computeVertexNormals();
+    const m = new THREE.Mesh(g, M.dirtEdge);
+    m.position.set(cx, 0, -(LANE_COUNT * LANE_W / 2 + 4.5));
+    group.add(m);
+    const gv = new THREE.PlaneGeometry(CHUNK_LEN, 30, Math.round(CHUNK_LEN / STEP), 6);
+    gv.rotateX(-Math.PI / 2);
+    const pv = gv.attributes.position;
+    const gvc = new Float32Array(pv.count * 3);
+    const grassA = new THREE.Color(0x79c712);
+    const grassB = new THREE.Color(0x5da207);
+    for (let i = 0; i < pv.count; i++) {
+      const wx = cx + pv.getX(i);
+      const lz = pv.getZ(i);
+      pv.setY(i, terrainHeight(wx) - 0.06);
+      const checker = (Math.floor(wx / 8) + Math.floor(lz / 8)) % 2 === 0;
+      const c = checker ? grassA : grassB;
+      gvc[i * 3] = c.r; gvc[i * 3 + 1] = c.g; gvc[i * 3 + 2] = c.b;
+    }
+    gv.setAttribute('color', new THREE.BufferAttribute(gvc, 3));
+    gv.computeVertexNormals();
+    const mv = new THREE.Mesh(gv, M.grass);
+    mv.position.set(cx, 0, -(LANE_COUNT * LANE_W / 2 + 19.5));
+    group.add(mv);
+  }
+  // rail on the far edge only — the near edge must stay clear of the camera
+  {
+    const z = -(LANE_COUNT * LANE_W / 2 + 0.55);
+    const segs = 8;
+    const segLen = CHUNK_LEN / segs;
+    for (let i = 0; i < segs; i++) {
+      const x = startX + (i + 0.5) * segLen;
+      const y = terrainHeight(x);
+      group.add(box(segLen + 0.05, 0.2, 0.24, M.rail, x, y + 1.0, z));
+      group.add(box(segLen + 0.05, 0.1, 0.1, M.neonDim, x, y + 1.14, z));
+      group.add(box(0.22, 1.1, 0.22, M.rail, x - segLen / 2, y + 0.5, z));
+    }
+    group.add(box(0.22, 1.1, 0.22, M.rail, startX + CHUNK_LEN, terrainHeight(startX + CHUNK_LEN) + 0.5, z));
+  }
+  // obstacle meshes
+  for (const o of obstacles) group.add(buildObstacleMesh(o));
+  // solid grass field running to the horizon behind the verge
+  {
+    const g = new THREE.PlaneGeometry(CHUNK_LEN, 260, Math.round(CHUNK_LEN / STEP), 4);
+    g.rotateX(-Math.PI / 2);
+    const p = g.attributes.position;
+    const cx = startX + CHUNK_LEN / 2;
+    for (let i = 0; i < p.count; i++) {
+      p.setY(i, terrainHeight(cx + p.getX(i)) - 0.1);
+    }
+    g.computeVertexNormals();
+    const m = new THREE.Mesh(g, M.grassFar);
+    m.position.set(cx, 0, -(LANE_COUNT * LANE_W / 2 + 164));
+    group.add(m);
+  }
+  // background skyline: small flat blue blocks far away
+  const rnd = mulberry32(hash32(index * 104729 + 7));
+  for (let i = 0; i < 6; i++) {
+    const w = 4 + rnd() * 8;
+    const h = 5 + rnd() * 10;
+    const d = 5 + rnd() * 8;
+    const x = startX + rnd() * CHUNK_LEN;
+    const z = -150 - rnd() * 40;
+    const b = box(w, h, d, M.bldg, x, h / 2 - 1.5, z);
+    group.add(b);
+    if (rnd() > 0.35) {
+      const band = box(w * 0.86, 0.5, d * 0.9, M.bldgWin, x, h * (0.3 + rnd() * 0.4), z);
+      group.add(band);
+    }
+  }
+  // distant ridge line: low blue slabs just above the horizon
+  for (let i = 0; i < 10; i++) {
+    const x = startX + (i + rnd() * 0.6) * (CHUNK_LEN / 10);
+    const z = -120 - rnd() * 30;
+    const h = 8 + rnd() * 14;
+    const w = 18 + rnd() * 22;
+    group.add(box(w, h, 4, M.bldgNear, x, h / 2 - 2.0, z));
+    group.add(box(w * 0.55, 2.0, 4.4, M.bldg, x, h - 2.0, z));
+  }
+  // flat blue water band along the horizon, the way the NES sky layers read
+  for (let i = 0; i < 4; i++) {
+    const z = -80 - i * 14;
+    group.add(box(CHUNK_LEN, 5 + i * 2, 2, M.bldg, startX + CHUNK_LEN / 2, 1.2 - i * 0.8, z));
+  }
+  // blocky trees along the far grass verge
+  for (let i = 0; i < 6; i++) {
+    const x = startX + rnd() * CHUNK_LEN;
+    const z = -20 - rnd() * 10;
+    const th = 2 + rnd() * 2;
+    group.add(box(0.8, th, 0.8, M.bark, x, th / 2 - 1.2, z));
+    const cw = 3 + rnd() * 3;
+    group.add(box(cw, cw * 0.8, cw * 0.7, M.leaf, x, th + cw * 0.3 - 1.2, z));
+  }
+  scene.add(group);
+  return { index, group, obstacles, startX, endX: startX + CHUNK_LEN };
+}
+function recycleChunk(c, newIndex) {
+  const fresh = buildChunk(newIndex);
+  // buildChunk already added the new group to the scene; swap it in and drop the old one
+  c.group.traverse((o) => { if (o.geometry && !o.geometry.userData.shared) o.geometry.dispose(); });
+  scene.remove(c.group);
+  c.index = fresh.index; c.group = fresh.group; c.obstacles = fresh.obstacles;
+  c.startX = fresh.startX; c.endX = fresh.endX;
+}
+for (let i = 0; i < CHUNK_COUNT; i++) chunks.push(buildChunk(i));
+
+/* ============================================================ game state */
+const state = {
+  mode: 'ready',            // ready | playing | crashed | gameover
+  x: 0, z: laneZ(1.5),      // lane 1.5 = start on lane index 1
+  lane: 1,
+  y: 0, vy: 0,
+  speed: 0,
+  pitch: 0,
+  airborne: false,
+  heat: 0,
+  cooldown: 0,
+  lives: START_LIVES,
+  time: 0,
+  distance: 0,
+  crashTimer: 0,
+  crashSpin: 0,
+  styleBoost: 0
+};
+state.y = terrainHeight(0);
+
+const keys = Object.create(null);
+const KEY_ALIAS = { KeyA: 'accel', KeyD: 'turbo', KeyW: 'laneUp', KeyS: 'laneDown', Space: 'jump' };
+const KEY_ACTIONS = ['accel', 'turbo', 'laneUp', 'laneDown', 'jump', 'pitchL', 'pitchR'];
+
+window.addEventListener('keydown', (e) => {
+  if (e.code === 'Space' || e.code.startsWith('Arrow')) e.preventDefault();
+  if (keys[e.code]) return;            // ignore auto-repeat
+  keys[e.code] = true;
+  const a = KEY_ALIAS[e.code];
+  if (a) keys[a] = true;
+  if (e.code === 'ArrowLeft') keys.pitchL = true;
+  if (e.code === 'ArrowRight') keys.pitchR = true;
+
+  if (e.code === 'Enter' || e.code === 'NumpadEnter') {
+    if (state.mode === 'ready' || state.mode === 'gameover') startRun();
+  }
+  if (e.code === 'KeyR') { startRun(); }
+  if (e.code === 'KeyW' && state.mode === 'playing') shiftLane(1);   // inward (away from camera)
+  if (e.code === 'KeyS' && state.mode === 'playing') shiftLane(-1);  // outward (toward camera)
+}, { passive: false });
+
+window.addEventListener('keyup', (e) => {
+  keys[e.code] = false;
+  const a = KEY_ALIAS[e.code];
+  if (a) keys[a] = false;
+  if (e.code === 'ArrowLeft') keys.pitchL = false;
+  if (e.code === 'ArrowRight') keys.pitchR = false;
+});
+window.addEventListener('blur', () => {
+  for (const k of KEY_ACTIONS) keys[k] = false;
+  for (const k in keys) keys[k] = false;
+});
+
+function shiftLane(dir) {
+  const next = Math.min(LANE_COUNT - 1, Math.max(0, state.lane + dir));
+  if (next === state.lane) return;
+  state.lane = next;
+  state.z = laneZ(next);
+  state.lean = dir * 0.28;
+}
+
+/* ============================================================ obstacle lookup */
+function obstaclesNear(x, radius) {
+  const out = [];
+  for (const c of chunks) {
+    if (x < c.startX - radius || x > c.endX + radius) continue;
+    for (const o of c.obstacles) {
+      if (x < o.x - radius - 10 || x > o.x + radius + 10) continue;
+      out.push(o);
+    }
+  }
+  return out;
+}
+
+/* ============================================================ support surface */
+function supportAt(lane, x) {
+  let bestY = terrainHeight(x);
+  let slope = terrainSlope(x);
+  let curv = terrainCurv(x);
+  let kind = 'ground';
+  let obs = null;
+
+  const list = obstaclesNear(x, 6);
+  // a gap is fatal: it wins over everything else in this lane
+  for (const o of list) {
+    if (o.type === 'gap' && o.lane === lane && x > o.gx0 && x < o.gx1) {
+      return { y: -Infinity, slope: 0, curv: 0, kind: 'gap', obs: o };
+    }
+  }
+  for (const o of list) {
+    if (o.lane !== lane) continue;
+    if (o.type === 'ramp') {
+      if (x >= o.rx0 && x <= o.rx1) {
+        const t = (x - o.rx0) / RAMP_LEN;
+        const y = terrainHeight(x) + RAMP_H * t;
+        if (y > bestY) { bestY = y; slope = RAMP_SLOPE; curv = 0; kind = 'ramp'; obs = o; }
+      }
+    } else if (o.type === 'mound') {
+      if (x >= o.mx0 && x <= o.mx1) {
+        const t = (x - o.mx0) / MOUND_LEN;
+        const h = MOUND_H * Math.sin(Math.PI * t);
+        const y = terrainHeight(x) + h;
+        if (y > bestY) {
+          bestY = y;
+          slope = (MOUND_H * Math.PI / MOUND_LEN) * Math.cos(Math.PI * t);
+          curv = -(MOUND_H * Math.PI * Math.PI / (MOUND_LEN * MOUND_LEN)) * Math.sin(Math.PI * t);
+          kind = 'mound'; obs = o;
+        }
+      }
+    }
+  }
+  return { y: bestY, slope, curv, kind, obs };
+}
+
+/* ============================================================ messaging */
+let msgTimer = 0;
+function showMsg(text, color, dur) {
+  el.msg.textContent = text;
+  el.msg.style.color = color;
+  el.msg.classList.add('show');
+  msgTimer = dur;
+}
+
+/* ============================================================ run control */
+function resetRun() {
+  state.x = 0; state.lane = 1; state.z = laneZ(1);
+  state.y = terrainHeight(0); state.vy = 0; state.speed = 0; state.pitch = 0;
+  state.airborne = false; state.heat = 0; state.cooldown = 0;
+  state.lives = START_LIVES; state.time = 0; state.distance = 0;
+  state.crashTimer = 0; state.crashSpin = 0; state.lean = 0; state.styleBoost = 0;
+  state.pitchAssist = true;
+  bikeRoot.position.set(state.x, state.y, state.z);
+  spinGroup.rotation.set(0, 0, 0);
+  tiltGroup.rotation.set(0, 0, 0);
+}
+function startRun() {
+  resetRun();
+  state.mode = 'playing';
+  el.overlay.classList.add('hidden');
+  el.overlayTitle.textContent = 'EXCITEBIKE';
+  el.overlayTitle.style.color = '#22e6ff';
+  el.overlayBody.innerHTML =
+    '<span class="k">A</span> throttle &nbsp; <span class="k">D</span> turbo (watch the overheat meter)<br>' +
+    '<span class="k">W</span> shift inward &nbsp; <span class="k">S</span> shift outward &nbsp; <span class="k">SPACE</span> hop<br>' +
+    '<span class="k">←</span> <span class="k">→</span> pitch the bike in mid-air — match the ground angle on landing';
+  el.overlayHint.textContent = 'PRESS ENTER OR CLICK TO RIDE';
+  showMsg('GO!', '#3dff9e', 0.8);
+}
+function gameOver() {
+  state.mode = 'gameover';
+  el.overlay.classList.remove('hidden');
+  el.overlayTitle.textContent = 'GAME OVER';
+  el.overlayTitle.style.color = '#ff3b5c';
+  el.overlayBody.innerHTML =
+    'RACE TIME <span class="k">' + state.time.toFixed(2) + ' s</span><br>' +
+    'DISTANCE <span class="k">' + Math.floor(state.distance) + ' m</span><br>' +
+    'PRESS <span class="k">ENTER</span> OR <span class="k">R</span> TO RIDE AGAIN';
+  el.overlayHint.textContent = '';
+}
+el.overlay.addEventListener('click', () => { if (state.mode !== 'playing') startRun(); });
+
+/* ============================================================ crash */
+function crash(reason) {
+  if (state.mode !== 'playing') return;
+  state.mode = 'crashed';
+  state.crashTimer = 0;
+  state.crashSpin = 0;
+  state.lives--;
+  showMsg('CRASH!', '#ff3b5c', 1.4);
+  state.crashReason = reason;
+}
+function respawn() {
+  // find a spot that is clear of obstacles: same lane first, then any lane
+  const lanes = [state.lane];
+  for (let i = 0; i < LANE_COUNT; i++) if (i !== state.lane) lanes.push(i);
+  for (const lane of lanes) {
+    for (let dx = 0; dx <= 40; dx++) {
+      const offsets = dx === 0 ? [0] : [dx, -dx];
+      for (const off of offsets) {
+        const x = state.x + off;
+        if (x < 0) continue;
+        if (isSafeSpot(lane, x)) {
+          state.lane = lane;
+          state.z = laneZ(lane);
+          state.x = x;
+          const sup = supportAt(lane, x);
+          state.y = sup.y;
+          state.vy = 0; state.pitch = 0; state.airborne = false; state.speed = 0;
+          state.mode = 'playing';
+          return;
+        }
+      }
+    }
+  }
+  // nothing clear nearby: drop back to plain ground on the current lane
+  state.y = terrainHeight(state.x);
+  state.vy = 0; state.pitch = 0; state.airborne = false; state.speed = 0;
+  state.mode = 'playing';
+}
+
+/* a spot is unsafe if an obstacle occupies it or the bike's footprint */
+function isSafeSpot(lane, x) {
+  for (const o of obstaclesNear(x, 8)) {
+    if (o.lane !== lane) continue;
+    if (o.type === 'gap') {
+      if (x > o.gx0 - 6 && x < o.gx1 + 6) return false;
+    } else if (o.type === 'hurdle') {
+      if (Math.abs(x - o.x) < 10) return false;
+    } else if (o.type === 'ramp') {
+      if (x > o.rx0 - 8 && x < o.rx1 + 4) return false;
+    } else if (o.type === 'mound') {
+      if (x > o.mx0 - 3 && x < o.mx1 + 3) return false;
+    }
+  }
+  return true;
+}
+
+/* ============================================================ simulation */
+function simulate(dt) {
+  if (state.mode !== 'playing') return;
+
+  state.time += dt;
+
+  /* ---- overheat / turbo ---- */
+  const wantTurbo = !!keys.turbo;
+  if (state.cooldown > 0) {
+    state.cooldown -= dt;
+    state.heat = Math.max(0, state.heat - (100 / COOLDOWN_TIME) * dt);
+    if (state.cooldown <= 0) { state.cooldown = 0; state.heat = 0; showMsg('COOL!', '#22e6ff', 0.7); }
+  } else if (wantTurbo && state.speed > 1) {
+    state.heat += HEAT_PER_SEC * dt;
+    if (state.heat >= 100) {
+      state.heat = 100;
+      state.cooldown = COOLDOWN_TIME;
+      showMsg('OVERHEAT!', '#ffb020', COOLDOWN_TIME);
+    }
+  } else {
+    state.heat = Math.max(0, state.heat - HEAT_COOL_SEC * dt);
+  }
+
+  /* ---- longitudinal motion ---- */
+  if (state.cooldown > 0) {
+    state.speed = 0;                 // overheat penalty: locked at zero speed
+  } else if (wantTurbo) {
+    state.speed = Math.min(TURBO_SPEED, state.speed + TURBO_ACCEL * dt);
+  } else if (keys.accel) {
+    state.speed = Math.min(MAX_SPEED, state.speed + ACCEL * dt);
+  } else {
+    state.speed = Math.max(0, state.speed - DRAG * dt);
+  }
+  if (state.styleBoost > 0) {
+    state.styleBoost -= dt;
+    state.speed = Math.min(TURBO_SPEED, state.speed + 4 * dt);
+  }
+
+  state.x += state.speed * dt;
+  state.distance = Math.max(state.distance, state.x);
+
+  /* ---- vertical / support ---- */
+  const sup = supportAt(state.lane, state.x);
+  const groundY = terrainHeight(state.x);
+  const wasAirborne = state.airborne;
+
+  if (state.airborne) {
+    state.vy -= GRAVITY * dt;
+    state.y += state.vy * dt;
+
+    const targetPitch = Math.atan(sup.kind === 'gap' ? 0 : sup.slope);
+    if (keys.pitchL) { state.pitch += PITCH_RATE * dt; state.pitchAssist = false; }   // nose up
+    else if (keys.pitchR) { state.pitch -= PITCH_RATE * dt; state.pitchAssist = false; }   // nose down
+    else if (state.pitchAssist) {
+      // no manual input yet: gently settle toward the ground angle
+      state.pitch += (targetPitch - state.pitch) * Math.min(1, 1.1 * dt);
+    }
+    state.pitch = Math.max(-PITCH_CLAMP, Math.min(PITCH_CLAMP, state.pitch));
+
+    if (sup.kind === 'gap') {
+      if (state.y < groundY - 1.4) { crash('gap'); return; }
+    } else if (state.y <= sup.y) {
+      state.y = sup.y;
+      state.airborne = false;
+      const diff = Math.abs(state.pitch - targetPitch);
+      const tol = LAND_TOLERANCE + LAND_SLOPE_TOL * Math.min(1, Math.abs(sup.slope));
+      if (diff > tol) { crash('landing'); return; }
+      state.pitch = targetPitch;
+      state.vy = 0;
+      if (diff < 0.12) { state.styleBoost = 0.7; showMsg('PERFECT!', '#3dff9e', 0.6); }
+    }
+  } else {
+    if (sup.kind === 'gap') { crash('gap'); return; }
+    const drop = state.y - sup.y;
+    if (drop > 0.15) {
+      // the surface fell away beneath us (ramp lip): keep the momentum we had
+      state.airborne = true;
+    } else {
+      state.y = sup.y;
+      state.vy = sup.slope * state.speed;
+      const targetPitch = Math.atan(sup.slope);
+      state.pitch += (targetPitch - state.pitch) * Math.min(1, 14 * dt);
+      // crest launch: the ground curves away faster than gravity can hold us down
+      if (sup.curv < 0) {
+        const need = (-sup.curv) * state.speed * state.speed;
+        if (need > GRAVITY) {
+          state.airborne = true;
+          state.vy += Math.min(9, 0.35 * need);
+        }
+      }
+    }
+  }
+
+  // a fresh launch re-enables the auto-level assist until the player takes over
+  if (state.airborne && !wasAirborne) state.pitchAssist = true;
+
+  /* ---- manual hop ---- */
+  if (keys.jump && !state.airborne && state.speed > 0.5 && state.cooldown <= 0) {
+    state.airborne = true;
+    state.vy = JUMP_V;
+    state.pitch = Math.atan(sup.slope) + 0.22;
+    state.pitchAssist = true;
+    keys.jump = false;
+  }
+
+  /* ---- hurdle collisions ---- */
+  for (const o of obstaclesNear(state.x, 2)) {
+    if (o.type !== 'hurdle' || o.lane !== state.lane) continue;
+    const base = terrainHeight(o.x);
+    const top = base + o.h + 0.15;
+    if (Math.abs(state.x - o.x) < 0.55 && state.y < top) { crash('hurdle'); return; }
+  }
+}
+
+/* ============================================================ crash animation */
+function updateCrash(dt) {
+  state.crashTimer += dt;
+  state.crashSpin += dt * 7.5;
+  const t = Math.min(1, state.crashTimer / 1.6);
+  state.speed = Math.max(0, state.speed - 45 * dt);
+  state.x += state.speed * dt;
+  const sup = supportAt(state.lane, state.x);
+  const groundY = sup.kind === 'gap' ? terrainHeight(state.x) : sup.y;
+  const hop = Math.sin(Math.min(1, state.crashTimer / 0.9) * Math.PI) * 1.6;
+  state.y = groundY + hop;
+  spinGroup.rotation.z = state.crashSpin * (1 - t * 0.35);
+  tiltGroup.rotation.z = state.pitch;
+  if (state.crashTimer >= 1.7) {
+    spinGroup.rotation.z = 0;
+    if (state.lives <= 0) { gameOver(); }
+    else { respawn(); showMsg('GO!', '#3dff9e', 0.5); }
+  }
+}
+
+/* ============================================================ visual update */
+function updateVisuals(dt) {
+  bikeRoot.position.set(state.x, state.y, state.z);
+
+  if (state.mode !== 'crashed') {
+    // lean into the lane shift
+    state.lean = (state.lean || 0) * Math.max(0, 1 - 8 * dt);
+    tiltGroup.rotation.set(0, state.lean * 0.9, state.pitch);
+    spinGroup.rotation.set(0, 0, 0);
+  }
+
+  // wheels spin with speed
+  const rot = state.speed * dt / 0.5;
+  wheelF.tire.rotation.y += rot;
+  wheelR.tire.rotation.y += rot;
+  wheelF.spoke.rotation.y += rot;
+  wheelR.spoke.rotation.y += rot;
+
+  // speed streaks: only visible at pace, flickering in and out
+  const fast = state.mode === 'playing' && state.speed > MAX_SPEED * 0.45;
+  for (const l of speedLines.children) {
+    l.visible = fast && ((Math.floor(state.time * 14 + l.userData.phase) % 3) !== 0);
+  }
+
+  // headlight follows the bike
+  bikeLight.position.set(state.x + 2.2, state.y + 2.4, state.z + 1.2);
+
+  // camera: smooth horizontal follow + lane-aware offset
+  // the camera sits on the +Z side looking across the lanes, so +X reads left-to-right
+  const camTargetX = state.x + 1.6;
+  const camTargetZ = state.z * 0.42 + 11.0;
+  const camTargetY = state.y + 2.6;
+  const k = 1 - Math.pow(0.0002, dt);
+  camera.position.x += (camTargetX - camera.position.x) * k;
+  camera.position.y += (camTargetY - camera.position.y) * k;
+  camera.position.z += (camTargetZ - camera.position.z) * k;
+  const look = new THREE.Vector3(state.x + 0.2, state.y + 1.1, state.z * 0.55);
+  camera.lookAt(look);
+  followSky(camera.position.x, camera.position.y, camera.position.z);
+}
+let nextChunkIndex = CHUNK_COUNT;
+
+/* ============================================================ HUD */
+let hudAcc = 0;
+function updateHUD(dt) {
+  hudAcc += dt;
+  if (hudAcc < 0.05) return;
+  hudAcc = 0;
+  el.time.textContent = state.time.toFixed(2);
+  el.dist.textContent = Math.floor(state.distance) + ' m';
+  el.speed.textContent = Math.round(state.speed * 3.6) + ' km/h';
+  el.lives.textContent = String(Math.max(0, state.lives));
+  el.heatFill.style.width = Math.min(100, state.heat) + '%';
+  if (state.cooldown > 0) {
+    el.heatState.textContent = 'LOCKED ' + state.cooldown.toFixed(1) + 's';
+    el.heatState.style.color = '#ff3b5c';
+  } else if (state.heat > 78) {
+    el.heatState.textContent = 'CRITICAL';
+    el.heatState.style.color = '#ffb020';
+  } else if (state.heat > 1) {
+    el.heatState.textContent = 'TURBO';
+    el.heatState.style.color = '#ffb020';
+  } else {
+    el.heatState.textContent = 'READY';
+    el.heatState.style.color = '#3dff9e';
+  }
+
+  // pitch gauge: needle = bike pitch, zone = acceptable landing angle
+  const sup = supportAt(state.lane, state.x);
+  const target = Math.atan(sup.kind === 'gap' ? 0 : sup.slope);
+  const span = PITCH_CLAMP;
+  const pct = (v) => Math.max(0, Math.min(100, 50 + (v / span) * 50));
+  el.pitchNeedle.style.left = pct(state.pitch) + '%';
+  const z0 = pct(target - LAND_TOLERANCE), z1 = pct(target + LAND_TOLERANCE);
+  el.pitchZone.style.left = z0 + '%';
+  el.pitchZone.style.width = Math.max(2, z1 - z0) + '%';
+  if (state.airborne) {
+    const d = Math.abs(state.pitch - target);
+    el.pitchHint.textContent = d <= LAND_TOLERANCE ? 'MATCHED' : 'ADJUST';
+    el.pitchHint.style.color = d <= LAND_TOLERANCE ? '#3dff9e' : '#ffb020';
+  } else {
+    el.pitchHint.textContent = 'GROUND ' + (target * 180 / Math.PI).toFixed(0) + '°';
+    el.pitchHint.style.color = '#8fa4d8';
+  }
+}
+
+/* ============================================================ main loop */
+let last = performance.now();
+let acc = 0;
+const FIXED = 1 / 120;
+
+function frame(now) {
+  requestAnimationFrame(frame);
+  let dt = (now - last) / 1000;
+  last = now;
+  if (dt > 0.25) dt = 0.25;
+
+  if (state.mode === 'playing') {
+    // recycle chunks that fell behind before any obstacle lookup runs
+    for (const c of chunks) {
+      if (c.endX < state.x - 90) recycleChunk(c, nextChunkIndex++);
+    }
+    acc += dt;
+    let guard = 0;
+    while (acc >= FIXED && guard++ < 12) {
+      simulate(FIXED);
+      acc -= FIXED;
+      if (state.mode !== 'playing') break;
+    }
+  } else if (state.mode === 'crashed') {
+    updateCrash(dt);
+  } else {
+    // idle attract mode: the bike rolls the track on its own
+    state.x += 6 * dt;
+    state.y = terrainHeight(state.x);
+    const lane = Math.floor(state.x / 40) % LANE_COUNT;
+    state.lane = lane;
+    state.z = laneZ(lane);
+  }
+
+  updateVisuals(dt);
+  updateHUD(dt);
+
+  if (msgTimer > 0) {
+    msgTimer -= dt;
+    if (msgTimer <= 0) el.msg.classList.remove('show');
+  }
+  renderer.render(scene, camera);
+}
+
+/* ============================================================ resize
+   The framebuffer is kept at NES-ish resolution and stretched with
+   nearest-neighbour by CSS, which is what gives the chunky pixel look. */
+const LOW_H = 240;                       // NES native vertical resolution
+function resize() {
+  const w = el.scene.clientWidth, h = el.scene.clientHeight;
+  if (!w || !h) return;
+  const rw = Math.max(160, Math.round(LOW_H * w / h));
+  renderer.setSize(rw, LOW_H, false);
+  camera.aspect = w / h;
+  camera.updateProjectionMatrix();
+}
+window.addEventListener('resize', resize);
+new ResizeObserver(resize).observe(el.scene);
+resize();
+
+/* ============================================================ boot */
+resetRun();
+camera.position.set(state.x + 1.6, state.y + 2.6, state.z * 0.42 + 11.0);
+camera.lookAt(state.x + 0.2, state.y + 1.1, state.z * 0.55);
+requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>
